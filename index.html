@@ -4937,50 +4937,7 @@ const API_KEY = "AhmedSchool2024";
     init();
 </script>
 
-<script>
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            const swCode = `
-                const CACHE_NAME = 'smart-absence-v7-pwa';
-                const ASSETS = [
-                    '/',
-                    location.href,
-                    'https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap',
-                    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
-                ];
-
-                self.addEventListener('install', (e) => {
-                    self.skipWaiting();
-                    e.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)));
-                });
-
-                self.addEventListener('fetch', (e) => {
-                    e.respondWith(
-                        caches.match(e.request).then(cachedResponse => {
-                            if (cachedResponse) return cachedResponse;
-                            return fetch(e.request).catch(() => new Response(''));
-                        })
-                    );
-                });
-
-                self.addEventListener('activate', (e) => {
-                    e.waitUntil(
-                        caches.keys().then(keys => Promise.all(
-                            keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
-                        ))
-                    );
-                });
-            `;
-            
-            const blob = new Blob([swCode], { type: 'application/javascript' });
-            const swUrl = URL.createObjectURL(blob);
-            
-            navigator.serviceWorker.register(swUrl).then(() => {
-                console.log('✅ PWA Service Worker Registered Successfully.');
-            }).catch(err => console.log('❌ Service Worker Registration Failed', err));
-        });
-    }
-    
+<script>    
     // ============================================
     // 🔍 البحث العام في جميع الفصول
     // ============================================
@@ -9839,7 +9796,7 @@ function closeUserGuide() {
 
                     <!-- ===== سبب الغياب ===== -->
                     <div class="form-group" style="margin-top:10px;">
-                        <label>📌 سبب الغياب (إن وجد)</label>
+                        <label>?? سبب الغياب (إن وجد)</label>
                         <input type="text" id="at_reason" placeholder="سبب الغياب">
                     </div>
 
@@ -16105,5 +16062,341 @@ console.log('✨ تم تفعيل التحسينات الجمالية الذهب�
             }
         });
     </script>
+    <script>
+    // ============================================
+    // 🚀 تسجيل Service Worker - الطريقة الصحيحة
+    // ============================================
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('sw.js')
+                .then(function(registration) {
+                    console.log('✅ Service Worker registered successfully!');
+                    console.log('📌 Scope:', registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('❌ Service Worker registration failed:', error);
+                });
+        });
+    }
+</script>
+<!-- ============================================ -->
+<!-- 📱 زر تثبيت التطبيق - لأندرويد فقط           -->
+<!-- ============================================ -->
+
+<style>
+    /* شريط التثبيت السفلي */
+    #installBanner {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(135deg, #1e293b, #0f172a);
+        border-top: 3px solid #caa14a;
+        padding: 12px 20px;
+        display: none;
+        z-index: 999999;
+        direction: rtl;
+        font-family: 'Tajawal', sans-serif;
+        box-shadow: 0 -4px 30px rgba(0,0,0,0.5);
+        animation: slideUp 0.4s ease;
+    }
+
+    #installBanner .banner-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        max-width: 600px;
+        margin: 0 auto;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    #installBanner .banner-text {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        flex: 1;
+    }
+
+    #installBanner .banner-icon {
+        font-size: 2rem;
+        color: #caa14a;
+    }
+
+    #installBanner .banner-title {
+        color: #f8fafc;
+        font-weight: 700;
+        font-size: 0.95rem;
+        margin: 0;
+    }
+
+    #installBanner .banner-sub {
+        color: #94a3b8;
+        font-size: 0.75rem;
+        margin: 0;
+    }
+
+    #installBanner .banner-actions {
+        display: flex;
+        gap: 8px;
+        flex-shrink: 0;
+    }
+
+    #installBanner .btn-install-android {
+        background: linear-gradient(135deg, #caa14a, #b38728);
+        border: none;
+        padding: 10px 24px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        color: #0f172a;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-family: 'Tajawal', sans-serif;
+        white-space: nowrap;
+    }
+
+    #installBanner .btn-install-android:hover {
+        transform: scale(1.03);
+        box-shadow: 0 4px 20px rgba(202,161,74,0.4);
+    }
+
+    #installBanner .btn-close-banner {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.1);
+        padding: 10px 14px;
+        border-radius: 10px;
+        color: #94a3b8;
+        cursor: pointer;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        font-family: 'Tajawal', sans-serif;
+    }
+
+    #installBanner .btn-close-banner:hover {
+        background: rgba(255,255,255,0.1);
+    }
+
+    @keyframes slideUp {
+        from { transform: translateY(100%); }
+        to { transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+        #installBanner .banner-content {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        #installBanner .banner-actions {
+            justify-content: center;
+        }
+        #installBanner .btn-install-android {
+            padding: 8px 18px;
+            font-size: 0.8rem;
+        }
+    }
+</style>
+
+<!-- ===== شريط التثبيت ===== -->
+<div id="installBanner">
+    <div class="banner-content">
+        <div class="banner-text">
+            <span class="banner-icon">📱</span>
+            <div>
+                <div class="banner-title">تثبيت تطبيق المدارس</div>
+                <div class="banner-sub">أضف التطبيق إلى شاشتك الرئيسية</div>
+            </div>
+        </div>
+        <div class="banner-actions">
+            <button class="btn-install-android" id="androidInstallBtn">
+                <i class="fa-solid fa-download"></i> تثبيت
+            </button>
+            <button class="btn-close-banner" id="closeBannerBtn">
+                <i class="fa-solid fa-times"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // ============================================================
+    // 📱 نظام التثبيت - لأندرويد فقط
+    // ============================================================
+
+    (function() {
+        'use strict';
+
+        let deferredPrompt = null;
+        const banner = document.getElementById('installBanner');
+        const installBtn = document.getElementById('androidInstallBtn');
+        const closeBtn = document.getElementById('closeBannerBtn');
+
+        // ============================================================
+        // 1️⃣ التحقق إذا كان التطبيق مثبتاً
+        // ============================================================
+        function isAppInstalled() {
+            // في وضع PWA
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                return true;
+            }
+            // في Safari (iOS) - لكن نتركها لأندرويد فقط
+            if (navigator.standalone === true) {
+                return true;
+            }
+            // تحقق من localStorage
+            if (localStorage.getItem('app_installed_android') === 'true') {
+                return true;
+            }
+            return false;
+        }
+
+        // ============================================================
+        // 2️⃣ إظهار/إخفاء شريط التثبيت
+        // ============================================================
+        function showBanner() {
+            if (isAppInstalled()) return;
+            if (!banner) return;
+            
+            // تأكد من أن المتصفح يدعم التثبيت
+            if (deferredPrompt) {
+                banner.style.display = 'block';
+            }
+        }
+
+        function hideBanner() {
+            if (banner) {
+                banner.style.display = 'none';
+            }
+        }
+
+        // ============================================================
+        // 3️⃣ حدث beforeinstallprompt (أندرويد/Chrome)
+        // ============================================================
+        window.addEventListener('beforeinstallprompt', function(e) {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // إذا لم يكن مثبتاً، أظهر شريط التثبيت
+            if (!isAppInstalled()) {
+                setTimeout(showBanner, 2000); // يظهر بعد ثانيتين
+            }
+        });
+
+        // ============================================================
+        // 4️⃣ حدث appinstalled (بعد التثبيت)
+        // ============================================================
+        window.addEventListener('appinstalled', function() {
+            localStorage.setItem('app_installed_android', 'true');
+            hideBanner();
+            showToast('🎉 تم تثبيت التطبيق بنجاح!');
+        });
+
+        // ============================================================
+        // 5️⃣ زر التثبيت
+        // ============================================================
+        if (installBtn) {
+            installBtn.addEventListener('click', function() {
+                if (deferredPrompt) {
+                    // ✅ أندرويد/Chrome
+                    deferredPrompt.prompt();
+                    deferredPrompt.userChoice.then(function(result) {
+                        if (result.outcome === 'accepted') {
+                            localStorage.setItem('app_installed_android', 'true');
+                            hideBanner();
+                            showToast('🎉 تم تثبيت التطبيق بنجاح!');
+                        } else {
+                            showToast('📱 يمكنك التثبيت لاحقاً');
+                        }
+                        deferredPrompt = null;
+                    });
+                } else {
+                    // إذا لم يظهر الـ prompt
+                    showToast('📱 اضغط على القائمة (⋮) ثم اختر "تثبيت التطبيق"');
+                }
+            });
+        }
+
+        // ============================================================
+        // 6️⃣ زر إغلاق الشريط
+        // ============================================================
+        if (closeBtn) {
+            closeBtn.addEventListener('click', function() {
+                hideBanner();
+                // لا نظهره مرة أخرى لمدة 7 أيام
+                localStorage.setItem('install_banner_closed', Date.now().toString());
+            });
+        }
+
+        // ============================================================
+        // 7️⃣ التحقق من إغلاق الشريط مسبقاً
+        // ============================================================
+        function checkBannerClosed() {
+            const closedTime = localStorage.getItem('install_banner_closed');
+            if (closedTime) {
+                const daysPassed = (Date.now() - parseInt(closedTime)) / (1000 * 60 * 60 * 24);
+                if (daysPassed < 7) {
+                    return true; // لا نظهر الشريط لمدة 7 أيام
+                }
+            }
+            return false;
+        }
+
+        // ============================================================
+        // 8️⃣ دالة Toast
+        // ============================================================
+        function showToast(msg) {
+            const old = document.querySelector('.install-toast');
+            if (old) old.remove();
+
+            const toast = document.createElement('div');
+            toast.className = 'install-toast';
+            toast.style.cssText = `
+                position: fixed;
+                bottom: 100px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: #10b981;
+                color: #0f172a;
+                padding: 12px 24px;
+                border-radius: 10px;
+                font-weight: bold;
+                z-index: 99999999;
+                font-family: 'Tajawal', sans-serif;
+                font-size: 0.9rem;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+                animation: fadeIn 0.3s ease;
+                direction: rtl;
+            `;
+            toast.textContent = msg;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // ============================================================
+        // 9️⃣ التشغيل عند التحميل
+        // ============================================================
+        if (!isAppInstalled() && !checkBannerClosed()) {
+            // ننتظر ظهور الحدث beforeinstallprompt
+            // إذا لم يظهر خلال 5 ثوان، نعرض رسالة بديلة
+            setTimeout(function() {
+                if (!deferredPrompt && !isAppInstalled()) {
+                    // المتصفح لا يدعم التثبيت التلقائي
+                    // نعرض رسالة للمستخدم
+                    if (banner && !checkBannerClosed()) {
+                        banner.style.display = 'block';
+                        // نغير النص قليلاً
+                        const title = banner.querySelector('.banner-title');
+                        if (title) title.textContent = 'تثبيت التطبيق';
+                        const sub = banner.querySelector('.banner-sub');
+                        if (sub) sub.textContent = 'اضغط على القائمة ⋮ ثم اختر "تثبيت التطبيق"';
+                    }
+                }
+            }, 5000);
+        }
+
+        console.log('📱 نظام التثبيت لأندرويد جاهز');
+
+    })();
+</script>
 </body>
 </html>
