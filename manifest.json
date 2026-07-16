@@ -1,0 +1,26 @@
+{
+  "name": "نظام الغياب الذكي",
+  "short_name": "الرصاص",
+  "description": "نظام إدارة الغياب والتواصل مع أولياء الأمور",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "theme_color": "#0f172a",
+  "background_color": "#0f172a",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "https://i.postimg.cc/hGBn2BFt/IMG-20260619-WA0000-2.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://i.postimg.cc/hGBn2BFt/IMG-20260619-WA0000-2.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
