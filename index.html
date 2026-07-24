@@ -2359,7 +2359,39 @@ body::after {
     }
 }
 
-/* ============================================================ */
+@keyframes spinBorder {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { 
+        transform: scale(0.8); 
+        opacity: 0.5; 
+    }
+    50% { 
+        transform: scale(1.2); 
+        opacity: 1; 
+    }
+}
+
+@keyframes lockPulse {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 0 0 30px rgba(202,161,74,0.1);
+    }
+    50% { 
+        transform: scale(1.02);
+        box-shadow: 0 0 60px rgba(202,161,74,0.2);
+    }
+}
+
+@keyframes lockShake {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    20% { transform: translateX(-8px) rotate(-3deg); }
+    40% { transform: translateX(8px) rotate(3deg); }
+    60% { transform: translateX(-5px) rotate(-2deg); }
+    80% { transform: translateX(5px) rotate(2deg); }
+}
     </style>
 </head>
 <body>
@@ -2799,10 +2831,48 @@ document.addEventListener('DOMContentLoaded', async function() {
     <div class="lock-card">
         
         <!-- الأيقونة -->
-        <div class="lock-icon-container" id="lockIconContainer">
-            <i class="fa-solid fa-shield-halved" id="lockShieldIcon"></i>
-        </div>
-
+<div class="lock-icon-container" id="lockIconContainer" style="
+    width: 100px; 
+    height: 100px; 
+    margin: 0 auto 18px; 
+    background: rgba(255,255,255,0.03);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,0.08);
+    border-radius: 50%; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    box-shadow: 
+        0 8px 32px rgba(0,0,0,0.3),
+        inset 0 1px 0 rgba(255,255,255,0.1);
+    animation: lockPulse 3s ease-in-out infinite;
+    position: relative;
+">
+    <!-- حلقة ذهبية -->
+    <div style="
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, rgba(202,161,74,0.3), transparent, rgba(202,161,74,0.3));
+        padding: 2px;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+    "></div>
+    
+    <span id="lockShieldIcon" style="
+        font-size: 3.6rem; 
+        color: #f8fafc; 
+        transition: all 0.3s ease; 
+        line-height: 1;
+        text-shadow: 0 0 30px rgba(202,161,74,0.2);
+        z-index: 1;
+    ">
+        🔒
+    </span>
+</div>
         <!-- العنوان -->
         <h2>نظام المدارس الذكي</h2>
         <p class="sub-title">✦ الإصدار الذهبي المعتمد ✦</p>
@@ -3065,7 +3135,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     </button>
 
     <!-- زر طباعة الشهادات -->
-    <button onclick="window.open('https://script.google.com/macros/s/AKfycbxJReG21mUyfCayN7LKDHRnr8NLU1xMUshLRPHqWISKf_C3YmAdpi4h-ssp0leRFKT5aA/exec', '_blank')"
+    <button onclick="window.open('https://script.google.com/macros/s/AKfycbyCMks4cIrOU7-BGM_SmasnP1k6kwSq2Wlp4C7DynhejHa605rFBeIjUU6KQ2rkde9urw/exec', '_blank')"
         style="background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728); 
                border: none; 
                padding: 14px 10px; 
@@ -16462,3 +16532,4 @@ console.log('✨ تم تفعيل التحسينات الجمالية الذهب�
 </script>
 </body>
 </html>
+
