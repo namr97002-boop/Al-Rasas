@@ -2578,41 +2578,46 @@ body::after {
     }
 </style>
 
-<!-- ===== شاشة الترخيص ===== -->
-<div id="licenseOverlay">
-    <div class="license-box">
-        <div class="icon"><i class="fa-solid fa-shield-halved"></i></div>
-        <h1>🔐 نظام الترخيص</h1>
-        <p class="sub">أدخل رمز الترخيص للوصول إلى النظام</p>
-
-        <div class="field">
-            <label><i class="fa-solid fa-key"></i> رمز الترخيص</label>
-            <input type="text" id="licenseCode" placeholder="أدخل رمز الترخيص" value="" autocomplete="off">
-        </div>
-
-        <div class="field">
-            <label><i class="fa-solid fa-microchip"></i> بصمة الجهاز</label>
-            <input type="text" id="deviceFingerprint" readonly placeholder="جاري التوليد...">
-        </div>
-
-        <button class="btn-license" id="verifyBtn" onclick="verifyLicense()">
-            <i class="fa-solid fa-check-circle"></i> ✅ تفعيل الترخيص
-        </button>
-
-        <div class="license-status" id="licenseStatus"></div>
-        <div class="license-offline" id="offlineStatus">📡 جاري التحقق من الأوفلاين...</div>
-        <div class="license-footer">🔐 نظام الترخيص v3.0</div>
-    </div>
-</div>
+<!-- ===== شاشة الترخيص - ملغاة نهائياً ===== -->
+<div id="licenseOverlay" style="display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; z-index: -9999 !important;"></div>
 
 <script>
 // ============================================================
-// 🔐 نظام الترخيص - يظهر مرة واحدة فقط كل 30 يوم
+// ============================================================
+// 🔐 نظام الترخيص - ملغي نهائياً (شاشة القفل هي المدخل)
 // ============================================================
 
-const LICENSE_API = "https://script.google.com/macros/s/AKfycbwnNwDHb8FNHC0Bs0CNlvQLchqFBCkjkYBFibT8KUWIwt6tgLHCKWnEJu0IGgp--XsX/exec";
+// ✅ إخفاء شاشة الترخيص فوراً
+document.addEventListener('DOMContentLoaded', function() {
+    const overlay = document.getElementById('licenseOverlay');
+    if (overlay) {
+        overlay.style.display = 'none';
+        overlay.classList.add('hidden');
+    }
+    
+    // تفعيل نظام الغياب مباشرة
+    if (typeof onLicenseSuccess === 'function') {
+        onLicenseSuccess();
+    }
+    
+    // توليد بصمة الجهاز (اختياري)
+    try {
+        generateDeviceFingerprint().then(fp => {
+            const el = document.getElementById('deviceFingerprint');
+            if (el) el.value = fp;
+        });
+    } catch(e) {}
+});
 
-// --- توليد بصمة الجهاز ---
+// دالة للتوافق مع الكود القديم
+function verifyLicense() {
+    document.getElementById('licenseOverlay').classList.add('hidden');
+    if (typeof onLicenseSuccess === 'function') {
+        onLicenseSuccess();
+    }
+}
+
+// توليد بصمة الجهاز
 async function generateDeviceFingerprint() {
     const parts = [
         navigator.userAgent || '',
@@ -2645,137 +2650,24 @@ async function generateDeviceFingerprint() {
     return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-// --- بيانات الأوفلاين ---
-function getOfflineData() {
-    try { 
-        const raw = localStorage.getItem('license_data'); 
-        return raw ? JSON.parse(raw) : null; 
-    } catch { return null; }
-}
-function saveOfflineData(data) { 
-    localStorage.setItem('license_data', JSON.stringify(data)); 
-}
-function clearOfflineData() {
-    localStorage.removeItem('license_data');
+function onLicenseSuccess() {
+    console.log('✅ تم الترخيص بنجاح - نظام الغياب يعمل');
+    if (typeof init === 'function') init();
 }
 
-// --- التحقق من صلاحية الأوفلاين ---
-function isOfflineValid() {
-    const data = getOfflineData();
-    if (!data) return false;
-    const expiry = new Date(data.expiry);
-    const now = new Date();
-    return expiry > now;
-}
-
-// --- التحقق من الترخيص ---
-async function verifyLicense() {
-    const code = document.getElementById('licenseCode').value.trim();
-    const device = document.getElementById('deviceFingerprint').value;
-    const statusEl = document.getElementById('licenseStatus');
-    const btn = document.getElementById('verifyBtn');
-
-    if (!code) { showLicenseStatus('⚠️ أدخل رمز الترخيص', 'warning'); return; }
-    if (!device || device.length !== 64) { showLicenseStatus('⚠️ بصمة الجهاز غير صالحة', 'warning'); return; }
-
-    btn.disabled = true;
-    btn.innerHTML = '<span class="loading"></span> جاري التحقق...';
-    showLicenseStatus('⏳ جاري الاتصال...', 'info');
-
-    try {
-        const offline = getOfflineData();
-        let url = `${LICENSE_API}?action=verify&code=${encodeURIComponent(code)}&device=${encodeURIComponent(device)}`;
-        if (offline?.token) url += `&offlineToken=${encodeURIComponent(offline.token)}`;
-
-        const res = await fetch(url);
-        const data = await res.json();
-
-        if (data.success) {
-            showLicenseStatus('✅ ' + data.message, 'success');
-            
-            // حفظ بيانات الأوفلاين (30 يوم)
-            const token = data.offlineToken || data.data?.offlineToken;
-            const days = data.offlineDays || data.data?.offlineDays || 30;
-            const expiry = new Date();
-            expiry.setDate(expiry.getDate() + days);
-            
-            saveOfflineData({ 
-                code, 
-                device, 
-                token: token || '',
-                expiry: expiry.toISOString().split('T')[0],
-                merchant: data.trader || data.data?.trader || 'غير محدد'
-            });
-
-            // ✅ إخفاء الترخيص نهائياً (حتى انتهاء الأوفلاين)
-            document.getElementById('licenseOverlay').classList.add('hidden');
-            
-            // تفعيل نظام الغياب
-            if (typeof onLicenseSuccess === 'function') onLicenseSuccess();
-            
-        } else {
-            showLicenseStatus('❌ ' + data.message, 'error');
-        }
-    } catch (e) {
-        // محاولة الأوفلاين
-        const offline = getOfflineData();
-        if (offline && offline.code === code && isOfflineValid()) {
-            showLicenseStatus('✅ تم التحقق من الأوفلاين', 'success');
-            document.getElementById('licenseOverlay').classList.add('hidden');
-            if (typeof onLicenseSuccess === 'function') onLicenseSuccess();
-            return;
-        }
-        showLicenseStatus('❌ فشل الاتصال ولا توجد صلاحية أوفلاين صالحة', 'error');
-    }
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fa-solid fa-check-circle"></i> ✅ تفعيل الترخيص';
-}
-
-function showLicenseStatus(msg, type) {
-    const el = document.getElementById('licenseStatus');
-    el.className = 'license-status show ' + type;
-    el.textContent = msg;
-}
-
-function updateOfflineStatusUI() {
-    const data = getOfflineData();
-    const el = document.getElementById('offlineStatus');
-    if (!data) { 
-        el.innerHTML = '⚠️ وضع الأوفلاين غير مفعل - أدخل رمز الترخيص';
-        return; 
-    }
-    const days = Math.max(0, Math.ceil((new Date(data.expiry) - new Date()) / (1000*60*60*24)));
-    if (days > 0) {
-        el.innerHTML = `✅ الأوفلاين نشط - متبقي ${days} يوم - مرحباً ${data.merchant || ''}`;
-    } else {
-        el.innerHTML = '⛔ انتهت صلاحية الأوفلاين - أدخل رمز الترخيص للتجديد';
-    }
-}
-
-// --- دالة لقفل النظام يدوياً (تظهر شاشة الترخيص مرة أخرى) ---
 function lockSystemManually() {
-    clearOfflineData();
-    document.getElementById('licenseOverlay').classList.remove('hidden');
-    document.getElementById('licenseCode').value = '';
-    document.getElementById('licenseStatus').className = 'license-status';
-    document.getElementById('licenseStatus').textContent = '';
-    showLicenseStatus('🔒 تم قفل النظام - أدخل الرمز لإعادة التفعيل', 'warning');
+    const overlay = document.getElementById('lockScreen');
+    if (overlay) {
+        overlay.style.display = 'flex';
+        overlay.style.opacity = '1';
+        overlay.style.pointerEvents = 'auto';
+        document.getElementById('pinField').value = '';
+        document.getElementById('lockShieldIcon').className = 'fa-solid fa-shield-halved';
+        document.getElementById('lockShieldIcon').style.color = 'var(--gold-solid)';
+        showToast('🔒 تم قفل النظام');
+        updateLockScreenDates();
+    }
 }
-
-/// --- تشغيل عند التحميل ---
-document.addEventListener('DOMContentLoaded', async function() {
-    // إخفاء شاشة الترخيص مباشرة
-    document.getElementById('licenseOverlay').classList.add('hidden');
-    
-    // تفعيل نظام الغياب مباشرة
-    if (typeof onLicenseSuccess === 'function') onLicenseSuccess();
-    
-    // توليد بصمة الجهاز (اختياري)
-    try {
-        const fp = await generateDeviceFingerprint();
-        document.getElementById('deviceFingerprint').value = fp;
-    } catch(e) {}
-});
 
 // ============================================================
 // 🔓 دالة تُستدعى من نظام الغياب لإضافة زر القفل
@@ -2797,7 +2689,18 @@ document.addEventListener('DOMContentLoaded', async function() {
 <div id="particlesContainer" class="bg-particles"></div>
 
 <div id="starsContainer" class="stars-container"></div>
-<div class="lock-screen-overlay" id="lockScreen">
+<div class="lock-screen-overlay" id="lockScreen" style="
+    display: flex !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    z-index: 99999 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: radial-gradient(ellipse at 50% 50%, #0a0a1a 0%, #050510 50%, #000000 100%) !important;
+">
     
     <!-- الخلفية السينمائية -->
     <div class="lock-bg-animation">
@@ -2828,124 +2731,378 @@ document.addEventListener('DOMContentLoaded', async function() {
     </div>
 
     <!-- بطاقة الدخول مع الإطار الذهبي -->
-    <div class="lock-card">
+    <div class="lock-card" style="
+        position: relative !important;
+        z-index: 1 !important;
+        background: rgba(10, 10, 30, 0.75) !important;
+        backdrop-filter: blur(40px) saturate(1.4) !important;
+        -webkit-backdrop-filter: blur(40px) saturate(1.4) !important;
+        border-radius: 32px !important;
+        padding: 45px 35px 35px !important;
+        width: 100% !important;
+        max-width: 460px !important;
+        text-align: center !important;
+        border: 3px solid rgba(202, 161, 74, 0.35) !important;
+        box-shadow: 
+            0 0 20px rgba(202, 161, 74, 0.12),
+            0 0 40px rgba(202, 161, 74, 0.06),
+            0 0 80px rgba(202, 161, 74, 0.03),
+            inset 0 0 20px rgba(202, 161, 74, 0.04) !important;
+        animation: lockCardIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        margin: 0 auto !important;
+    ">
         
         <!-- الأيقونة -->
-<div class="lock-icon-container" id="lockIconContainer" style="
-    width: 100px; 
-    height: 100px; 
-    margin: 0 auto 18px; 
-    background: rgba(255,255,255,0.03);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,0.08);
-    border-radius: 50%; 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
-    box-shadow: 
-        0 8px 32px rgba(0,0,0,0.3),
-        inset 0 1px 0 rgba(255,255,255,0.1);
-    animation: lockPulse 3s ease-in-out infinite;
-    position: relative;
-">
-    <!-- حلقة ذهبية -->
-    <div style="
-        position: absolute;
-        inset: -4px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, rgba(202,161,74,0.3), transparent, rgba(202,161,74,0.3));
-        padding: 2px;
-        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-    "></div>
-    
-    <span id="lockShieldIcon" style="
-        font-size: 3.6rem; 
-        color: #f8fafc; 
-        transition: all 0.3s ease; 
-        line-height: 1;
-        text-shadow: 0 0 30px rgba(202,161,74,0.2);
-        z-index: 1;
-    ">
-        🔒
-    </span>
-</div>
-        <!-- العنوان -->
-        <h2>نظام المدارس الذكي</h2>
-        <p class="sub-title">✦ الإصدار الذهبي المعتمد ✦</p>
+        <div class="lock-icon-container" style="
+            width: 100px; 
+            height: 100px; 
+            margin: 0 auto 18px; 
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.08);
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            box-shadow: 
+                0 8px 32px rgba(0,0,0,0.3),
+                inset 0 1px 0 rgba(255,255,255,0.1);
+            animation: lockPulse 3s ease-in-out infinite;
+            position: relative;
+        ">
+            <div style="
+                position: absolute;
+                inset: -4px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, rgba(202,161,74,0.3), transparent, rgba(202,161,74,0.3));
+                padding: 2px;
+                mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+                -webkit-mask-composite: xor;
+                mask-composite: exclude;
+            "></div>
+            
+            <span id="lockShieldIcon" style="
+                font-size: 3.6rem; 
+                color: #f8fafc; 
+                transition: all 0.3s ease; 
+                line-height: 1;
+                text-shadow: 0 0 30px rgba(202,161,74,0.2);
+                z-index: 1;
+            ">
+                🔒
+            </span>
+        </div>
         
-        <div class="lock-divider"></div>
+        <!-- العنوان -->
+        <h2 style="
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 2px;
+            letter-spacing: 2px;
+            animation: shimmerText 4s ease-in-out infinite;
+        ">نظام المدارس الذكي</h2>
+        
+        <p class="sub-title" style="
+            color: rgba(148, 163, 184, 0.6);
+            font-size: 0.8rem;
+            margin-bottom: 4px;
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        ">✦ الإصدار الذهبي المعتمد ✦</p>
+        
+        <div class="lock-divider" style="
+            width: 80px;
+            height: 2px;
+            margin: 10px auto 14px;
+            background: linear-gradient(90deg, transparent, #caa14a, #fcf6ba, #caa14a, transparent);
+            border-radius: 2px;
+            animation: dividerPulse 3s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(202, 161, 74, 0.2);
+        "></div>
 
         <!-- اسم المدرسة -->
-        <div class="lock-school-name">
-            <i class="fa-solid fa-school"></i>
-            <span>مدرسة الشهيد علي غالب الرصاص</span>
+        <div class="lock-school-name" style="
+            display: inline-block;
+            margin: 6px auto 14px;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, rgba(202, 161, 74, 0.10), rgba(202, 161, 74, 0.03));
+            border: 1px solid rgba(202, 161, 74, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(202, 161, 74, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        ">
+            <i class="fa-solid fa-school" style="color: #caa14a; font-size: 1.2rem; margin-left: 8px; position: relative; z-index: 1;"></i>
+            <span style="
+                background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+                background-size: 300% 300%;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-size: 1.2rem;
+                font-weight: 800;
+                letter-spacing: 0.5px;
+                position: relative;
+                z-index: 1;
+                animation: shimmerText 3s ease-in-out infinite;
+            ">مدرسة الشهيد علي غالب الرصاص</span>
         </div>
 
         <!-- التاريخ -->
-        <div class="lock-date-container">
-            <div class="lock-date-item hijri" id="lockHijriDate">
+        <div class="lock-date-container" style="
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            background: rgba(15, 23, 42, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 14px 18px;
+            margin-bottom: 18px;
+            backdrop-filter: blur(10px);
+        ">
+            <div class="lock-date-item hijri" id="lockHijriDate" style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                font-size: 1rem;
+                font-weight: 600;
+                color: #caa14a;
+            ">
                 <i class="fa-solid fa-moon"></i> جاري حساب التاريخ الهجري...
             </div>
-            <div class="lock-date-item gregorian" id="lockGregorianDate">
+            <div class="lock-date-item gregorian" id="lockGregorianDate" style="
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                font-size: 0.95rem;
+                font-weight: 600;
+                color: rgba(248, 250, 252, 0.7);
+                font-weight: 500;
+            ">
                 <i class="fa-solid fa-calendar-days"></i> جاري حساب التاريخ الميلادي...
             </div>
         </div>
 
         <!-- حقل PIN -->
-        <div class="pin-input-wrapper">
+        <div class="pin-input-wrapper" style="position: relative; margin-bottom: 14px;">
             <input type="password" id="pinField" class="pin-input" 
                    placeholder="••••••••" maxlength="8" 
-                   oninput="verifyPin()" autocomplete="off">
+                   oninput="verifyPin()" autocomplete="off"
+                   style="
+                       width: 100%;
+                       padding: 18px 20px;
+                       border-radius: 18px;
+                       border: 2px solid rgba(255, 255, 255, 0.06);
+                       background: rgba(15, 23, 42, 0.5);
+                       color: #f8fafc;
+                       font-size: 1.8rem;
+                       letter-spacing: 14px;
+                       text-align: center;
+                       outline: none;
+                       transition: all 0.4s ease;
+                       font-weight: 700;
+                       height: 70px;
+                       backdrop-filter: blur(10px);
+                       font-family: 'Tajawal', sans-serif;
+                   ">
         </div>
 
         <!-- الأزرار -->
-        <div class="lock-actions">
+        <div class="lock-actions" style="width: 100% !important; direction: rtl !important;">
             
             <!-- تعديل الرقم السري -->
-            <button class="lock-btn lock-btn-outline" onclick="toggleChangePinPanel()">
+            <button class="lock-btn lock-btn-outline" onclick="toggleChangePinPanel()" style="
+                width: 100%;
+                padding: 14px;
+                border: none;
+                border-radius: 16px;
+                font-weight: 700;
+                font-size: 0.95rem;
+                cursor: pointer;
+                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                font-family: 'Tajawal', sans-serif;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                position: relative;
+                overflow: hidden;
+                background: rgba(255,255,255,0.03);
+                border: 1px solid rgba(255,255,255,0.06);
+                color: rgba(148, 163, 184, 0.7);
+            ">
                 <i class="fa-solid fa-key"></i> تعديل رمز الدخول
             </button>
 
             <!-- لوحة تغيير الرقم السري -->
-            <div class="change-pin-panel" id="changePinPanel">
+            <div class="change-pin-panel" id="changePinPanel" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.08); animation: fadeIn 0.3s ease;">
                 <input type="password" id="oldPinField" class="pin-input" 
-                       placeholder="الرمز الحالي" maxlength="8" style="margin-bottom:10px;">
+                       placeholder="الرمز الحالي" maxlength="8"
+                       style="
+                           width: 100%;
+                           padding: 12px 16px;
+                           border-radius: 14px;
+                           border: 1px solid rgba(255, 255, 255, 0.06);
+                           background: rgba(15, 23, 42, 0.5);
+                           color: #f8fafc;
+                           font-size: 1.2rem;
+                           letter-spacing: 8px;
+                           text-align: center;
+                           outline: none;
+                           transition: all 0.4s ease;
+                           font-weight: 700;
+                           height: 55px;
+                           backdrop-filter: blur(10px);
+                           font-family: 'Tajawal', sans-serif;
+                           margin-bottom: 10px;
+                       ">
                 <input type="password" id="newPinField" class="pin-input" 
-                       placeholder="الرمز الجديد" maxlength="8" style="margin-bottom:10px;">
-                <button class="lock-btn lock-btn-gold" onclick="saveNewPin()">
+                       placeholder="الرمز الجديد" maxlength="8"
+                       style="
+                           width: 100%;
+                           padding: 12px 16px;
+                           border-radius: 14px;
+                           border: 1px solid rgba(255, 255, 255, 0.06);
+                           background: rgba(15, 23, 42, 0.5);
+                           color: #f8fafc;
+                           font-size: 1.2rem;
+                           letter-spacing: 8px;
+                           text-align: center;
+                           outline: none;
+                           transition: all 0.4s ease;
+                           font-weight: 700;
+                           height: 55px;
+                           backdrop-filter: blur(10px);
+                           font-family: 'Tajawal', sans-serif;
+                           margin-bottom: 10px;
+                       ">
+                <button class="lock-btn lock-btn-gold" onclick="saveNewPin()" style="
+                    width: 100%;
+                    padding: 14px;
+                    border: none;
+                    border-radius: 16px;
+                    font-weight: 700;
+                    font-size: 0.95rem;
+                    cursor: pointer;
+                    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    font-family: 'Tajawal', sans-serif;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    position: relative;
+                    overflow: hidden;
+                    background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728);
+                    color: #0f172a;
+                    box-shadow: 0 4px 30px rgba(202, 161, 74, 0.2);
+                ">
                     <i class="fa-solid fa-floppy-disk"></i> حفظ الرمز الجديد
                 </button>
             </div>
 
             <!-- أزرار الدخول السريع -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px;">
-                <button class="lock-btn lock-btn-teacher" onclick="openTeacherModeFromLock()">
+                <button class="lock-btn lock-btn-teacher" onclick="openTeacherModeFromLock()" style="
+                    width: 100%;
+                    padding: 14px;
+                    border: none;
+                    border-radius: 16px;
+                    font-weight: 700;
+                    font-size: 0.95rem;
+                    cursor: pointer;
+                    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    font-family: 'Tajawal', sans-serif;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    position: relative;
+                    overflow: hidden;
+                    background: linear-gradient(135deg, #8b5cf6, #6d28d9);
+                    color: white;
+                    box-shadow: 0 4px 30px rgba(139, 92, 246, 0.2);
+                ">
                     <i class="fa-solid fa-chalkboard-user"></i> دخول المعلمين
                 </button>
-                <button class="lock-btn lock-btn-admin" onclick="openAdminModeFromLock()">
+                <button class="lock-btn lock-btn-admin" onclick="openAdminModeFromLock()" style="
+                    width: 100%;
+                    padding: 14px;
+                    border: none;
+                    border-radius: 16px;
+                    font-weight: 700;
+                    font-size: 0.95rem;
+                    cursor: pointer;
+                    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    font-family: 'Tajawal', sans-serif;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    position: relative;
+                    overflow: hidden;
+                    background: linear-gradient(135deg, #f59e0b, #d97706);
+                    color: #0f172a;
+                    box-shadow: 0 4px 30px rgba(245, 158, 11, 0.2);
+                ">
                     <i class="fa-solid fa-user-shield"></i> المشرفين
                 </button>
             </div>
 
             <!-- زر الدرجات -->
-            <div id="lockGradesBtnWrapper" style="display: none;">
-                <button class="lock-btn lock-btn-grades" onclick="openGradesFromLock()">
+            <div id="lockGradesBtnWrapper" style="display: none; margin-top: 8px;">
+                <button class="lock-btn lock-btn-grades" onclick="openGradesFromLock()" style="
+                    width: 100%;
+                    padding: 14px;
+                    border: none;
+                    border-radius: 16px;
+                    font-weight: 700;
+                    font-size: 0.95rem;
+                    cursor: pointer;
+                    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                    font-family: 'Tajawal', sans-serif;
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+                    position: relative;
+                    overflow: hidden;
+                    background: linear-gradient(135deg, #caa14a, #b38728);
+                    color: #0f172a;
+                    box-shadow: 0 4px 30px rgba(202, 161, 74, 0.2);
+                ">
                     <i class="fa-solid fa-star"></i> 📊 الدرجات
                 </button>
             </div>
 
-      <!-- المطور - نسخة واضحة -->
-<div class="lock-version" style="margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(202, 161, 74, 0.08);">
-    <div style="font-size: 0.8rem; color: rgba(202, 161, 74, 0.5); direction: rtl; font-weight: 500;">
-        برمجة وتطوير: <strong style="color: rgba(202, 161, 74, 0.8); font-weight: 800;">نصر العامري</strong>
-        <span style="margin: 0 10px; color: rgba(202, 161, 74, 0.15);">|</span>
-        📱 <span style="color: rgba(202, 161, 74, 0.6); font-weight: 600; direction: ltr; display: inline-block;">770362878</span>
+            <!-- المطور - نسخة واضحة -->
+            <div class="lock-version" style="
+                margin-top: 14px;
+                padding-top: 12px;
+                border-top: 1px solid rgba(202, 161, 74, 0.08);
+            ">
+                <div style="
+                    font-size: 0.8rem;
+                    color: rgba(202, 161, 74, 0.5);
+                    direction: rtl;
+                    font-weight: 500;
+                ">
+                    برمجة وتطوير: <strong style="color: rgba(202, 161, 74, 0.8); font-weight: 800;">نصر العامري</strong>
+                    <span style="margin: 0 10px; color: rgba(202, 161, 74, 0.15);">|</span>
+                    📱 <span style="color: rgba(202, 161, 74, 0.6); font-weight: 600; direction: ltr; display: inline-block;">770362878</span>
+                </div>
+            </div>
+        </div>
+        
     </div>
-</div>
 </div>
         
     </div>
