@@ -3640,32 +3640,34 @@ const API_KEY = "AhmedSchool2024";
     }
 
     function verifyPin() {
-        const inputField = document.getElementById('pinField');
-        const overlay = document.getElementById('lockScreen');
-        const shieldIcon = document.getElementById('lockShieldIcon');
-        const currentPin = getSavedPin();
+    const inputField = document.getElementById('pinField');
+    const overlay = document.getElementById('lockScreen');
+    const shieldIcon = document.getElementById('lockShieldIcon');
+    const currentPin = getSavedPin();
 
-        if (inputField.value === currentPin) {
-            shieldIcon.className = "fa-solid fa-shield-cat fa-bounce";
-            shieldIcon.style.color = "var(--success)";
-            showToast("تم التحقق من رمز الأمان بنجاح. أهلاً بك!");
-            
-            setTimeout(() => {
-                overlay.style.opacity = "0";
-                overlay.style.pointerEvents = "none";
-                inputField.blur();
-            }, 400);
-        } else if (inputField.value.length >= currentPin.length) {
-            shieldIcon.className = "fa-solid fa-circle-xmark";
-            shieldIcon.style.color = "var(--danger)";
-            setTimeout(() => {
-                inputField.value = "";
-                shieldIcon.className = "fa-solid fa-shield-halved";
-                shieldIcon.style.color = "var(--gold-solid)";
-            }, 600);
-        }
+    if (inputField.value === currentPin) {
+        shieldIcon.className = "fa-solid fa-shield-cat";
+        shieldIcon.style.color = "#10b981";
+        showToast("✅ تم التحقق بنجاح");
+        
+        // ✅ إخفاء شاشة القفل نهائياً وبدون تلاعب
+        setTimeout(() => {
+            overlay.style.display = "none";
+            overlay.style.opacity = "0";
+            overlay.style.pointerEvents = "none";
+            inputField.blur();
+        }, 300);
+        
+    } else if (inputField.value.length >= currentPin.length) {
+        shieldIcon.className = "fa-solid fa-circle-xmark";
+        shieldIcon.style.color = "#ef4444";
+        setTimeout(() => {
+            inputField.value = "";
+            shieldIcon.className = "fa-solid fa-shield-halved";
+            shieldIcon.style.color = "#caa14a";
+        }, 600);
     }
-
+}
     function toggleChangePinPanel() {
         const panel = document.getElementById('changePinPanel');
         panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
