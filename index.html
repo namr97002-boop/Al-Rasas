@@ -14,10 +14,102 @@
     <meta name="theme-color" content="#0f172a">
     <meta name="msapplication-TileColor" content="#0f172a">
     
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
+    <!-- ===== أيقونات تعمل بدون إنترنت 100% ===== -->
+<style>
+/* ============================================================ */
+/* 🎨 أيقونات يونيكود - تعمل بدون تحميل خارجي                  */
+/* ============================================================ */
+
+/* استبدال جميع أيقونات Font Awesome بأيقونات يونيكود */
+.fa-solid, .fa-regular, .fa-brands, .fa {
+    font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', system-ui, sans-serif !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+}
+
+/* ===== أيقونات شاشة القفل ===== */
+.fa-shield-halved:before { content: "🔐"; }
+.fa-moon:before { content: "🌙"; }
+.fa-calendar-days:before { content: "📅"; }
+.fa-key:before { content: "🔑"; }
+.fa-chalkboard-user:before { content: "👨‍🏫"; }
+.fa-user-shield:before { content: "🛡️"; }
+.fa-star:before { content: "⭐"; }
+.fa-school:before { content: "🏫"; }
+.fa-lock:before { content: "🔒"; }
+.fa-unlock:before { content: "🔓"; }
+.fa-check:before { content: "✅"; }
+.fa-check-circle:before { content: "✅"; }
+.fa-times:before { content: "❌"; }
+.fa-circle-xmark:before { content: "❌"; }
+.fa-print:before { content: "🖨️"; }
+.fa-download:before { content: "📥"; }
+.fa-cloud:before { content: "☁️"; }
+.fa-cloud-arrow-up:before { content: "☁️⬆️"; }
+.fa-cloud-download-alt:before { content: "☁️⬇️"; }
+.fa-wifi:before { content: "📶"; }
+.fa-wifi-slash:before { content: "📴"; }
+.fa-users:before { content: "👥"; }
+.fa-user-slash:before { content: "🚫👤"; }
+.fa-user-graduate:before { content: "🎓"; }
+.fa-graduation-cap:before { content: "🎓"; }
+.fa-phone:before { content: "📞"; }
+.fa-search:before { content: "🔍"; }
+.fa-folder-open:before { content: "📂"; }
+.fa-arrows-rotate:before { content: "🔄"; }
+.fa-sync:before { content: "🔄"; }
+.fa-trash-can:before { content: "🗑️"; }
+.fa-eye-slash:before { content: "👁️‍🗨️"; }
+.fa-chart-simple:before { content: "📊"; }
+.fa-chart-pie:before { content: "📊"; }
+.fa-trophy:before { content: "🏆"; }
+.fa-book-open:before { content: "📖"; }
+.fa-id-card-clip:before { content: "🪪"; }
+.fa-coins:before { content: "💰"; }
+.fa-money-bill-wave:before { content: "💰"; }
+.fa-calculator:before { content: "🧮"; }
+.fa-brain:before { content: "🧠"; }
+.fa-triangle-exclamation:before { content: "⚠️"; }
+.fa-circle-exclamation:before { content: "⚠️"; }
+.fa-info-circle:before { content: "ℹ️"; }
+.fa-code:before { content: "💻"; }
+.fa-version-tag:before { content: "🏷️"; }
+.fa-certificate:before { content: "📜"; }
+.fa-database:before { content: "🗄️"; }
+.fa-magnifying-glass:before { content: "🔍"; }
+.fa-calendar-alt:before { content: "📅"; }
+.fa-calendar-day:before { content: "📅"; }
+.fa-file-excel:before { content: "📊"; }
+.fa-file-pdf:before { content: "📄"; }
+.fa-file-circle-plus:before { content: "📄➕"; }
+.fa-qrcode:before { content: "📱"; }
+.fa-mobile-screen-button:before { content: "📱"; }
+.fa-circle-check:before { content: "✅"; }
+.fa-circle:before { content: "●"; }
+
+/* ===== أيقونات وسائل التواصل ===== */
+.fa-brands.fa-whatsapp:before { content: "📱"; }
+.fa-comment-sms:before { content: "💬"; }
+.fa-whatsapp:before { content: "📱"; }
+.fa-instagram:before { content: "📸"; }
+.fa-facebook:before { content: "📘"; }
+.fa-twitter:before { content: "🐦"; }
+.fa-youtube:before { content: "📺"; }
+
+/* ===== أيقونات إضافية ===== */
+.fa-gold:before { content: "🌟"; }
+.fa-star-gold:before { content: "⭐"; }
+.fa-education:before { content: "📚"; }
+.fa-teacher:before { content: "👨‍🏫"; }
+.fa-student:before { content: "👨‍🎓"; }
+.fa-school-building:before { content: "🏫"; }
+.fa-notification:before { content: "🔔"; }
+.fa-settings:before { content: "⚙️"; }
+.fa-admin:before { content: "👑"; }
+.fa-principal:before { content: "🧑‍🏫"; }
+</style>
     
     <style>
         :root {
@@ -1067,7 +1159,7 @@ body::after {
 .lock-icon-container {
     background: rgba(202, 161, 74, 0.15) !important;
     border-color: rgba(202, 161, 74, 0.25) !important;
-    animation: lockPulse 3s ease-in-out infinite;
+    
 }
 
 @keyframes lockPulse {
@@ -1496,31 +1588,187 @@ body::after {
 /* ===== نهاية التحسينات الجمالية ===== */
 /* ============================================================ */
 /* 🎬 شاشة الدخول السينمائية - الإطار الذهبي المتساوي           */
-/* ============================================================ */
+/* 
+============================================================ */
 
-/* ===== 
-/* ===== خلفية سينمائية (خطوط فقط) ===== */
-.lock-screen {
+/* ===== الخلفية السينمائية ===== */
+.lock-screen-overlay {
     position: fixed;
-    inset: 0;
-    background: #050510;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at 50% 50%, #0a0a1a 0%, #050510 50%, #000000 100%);
     z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
     overflow: hidden;
 }
 
-.lock-screen::before {
+/* ===== تأثير السينما - خطوط الإضاءة ===== */
+.lock-screen-overlay::before {
     content: '';
     position: absolute;
-    inset: 0;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
     background: 
-        repeating-linear-gradient(0deg, transparent 0px, transparent 39px, rgba(202,161,74,0.06) 39px, rgba(202,161,74,0.06) 40px),
-        repeating-linear-gradient(90deg, transparent 0px, transparent 39px, rgba(202,161,74,0.06) 39px, rgba(202,161,74,0.06) 40px);
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 40px,
+            rgba(202, 161, 74, 0.015) 40px,
+            rgba(202, 161, 74, 0.015) 41px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 40px,
+            rgba(202, 161, 74, 0.015) 40px,
+            rgba(202, 161, 74, 0.015) 41px
+        );
     animation: gridMove 20s linear infinite;
+    pointer-events: none;
+    z-index: 0;
 }
 
 @keyframes gridMove {
-    0% { transform: translate(0,0); }
-    100% { transform: translate(40px,40px); }
+    0% { transform: translate(0, 0) rotate(0deg); }
+    100% { transform: translate(50px, 50px) rotate(2deg); }
+}
+
+/* ===== الكرات المتوهجة السينمائية ===== */
+.lock-bg-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.lock-bg-animation .orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    animation: orbCinema 15s ease-in-out infinite alternate;
+}
+
+.lock-bg-animation .orb:nth-child(1) {
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(202, 161, 74, 0.15), rgba(202, 161, 74, 0.02));
+    top: -150px;
+    right: -150px;
+    animation-delay: 0s;
+    animation-duration: 20s;
+}
+
+.lock-bg-animation .orb:nth-child(2) {
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.12), rgba(59, 130, 246, 0.01));
+    bottom: -100px;
+    left: -100px;
+    animation-delay: -5s;
+    animation-duration: 18s;
+}
+
+.lock-bg-animation .orb:nth-child(3) {
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.10), rgba(139, 92, 246, 0.01));
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation-delay: -10s;
+    animation-duration: 22s;
+}
+
+.lock-bg-animation .orb:nth-child(4) {
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(245, 158, 11, 0.12), rgba(245, 158, 11, 0.01));
+    top: 20%;
+    right: 20%;
+    animation-delay: -3s;
+    animation-duration: 16s;
+}
+
+.lock-bg-animation .orb:nth-child(5) {
+    width: 250px;
+    height: 250px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.08), rgba(16, 185, 129, 0.01));
+    bottom: 20%;
+    left: 20%;
+    animation-delay: -7s;
+    animation-duration: 19s;
+}
+
+@keyframes orbCinema {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+    25% { transform: translate(40px, -50px) scale(1.15) rotate(5deg); }
+    50% { transform: translate(-30px, 40px) scale(0.85) rotate(-3deg); }
+    75% { transform: translate(20px, -20px) scale(1.1) rotate(4deg); }
+    100% { transform: translate(-10px, 10px) scale(0.95) rotate(-2deg); }
+}
+
+/* ===== جسيمات ذهبية متطايرة ===== */
+.lock-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.lock-particle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: radial-gradient(circle, #caa14a, transparent);
+    border-radius: 50%;
+    animation: particleFloat linear infinite;
+    opacity: 0;
+}
+
+.lock-particle:nth-child(1) { left: 10%; animation-duration: 12s; animation-delay: 0s; }
+.lock-particle:nth-child(2) { left: 20%; animation-duration: 15s; animation-delay: 2s; }
+.lock-particle:nth-child(3) { left: 30%; animation-duration: 10s; animation-delay: 4s; }
+.lock-particle:nth-child(4) { left: 40%; animation-duration: 18s; animation-delay: 1s; }
+.lock-particle:nth-child(5) { left: 50%; animation-duration: 14s; animation-delay: 3s; }
+.lock-particle:nth-child(6) { left: 60%; animation-duration: 11s; animation-delay: 5s; }
+.lock-particle:nth-child(7) { left: 70%; animation-duration: 16s; animation-delay: 2s; }
+.lock-particle:nth-child(8) { left: 80%; animation-duration: 13s; animation-delay: 4s; }
+.lock-particle:nth-child(9) { left: 90%; animation-duration: 17s; animation-delay: 1s; }
+.lock-particle:nth-child(10) { left: 15%; animation-duration: 19s; animation-delay: 3s; }
+.lock-particle:nth-child(11) { left: 45%; animation-duration: 12s; animation-delay: 5s; }
+.lock-particle:nth-child(12) { left: 75%; animation-duration: 14s; animation-delay: 2s; }
+.lock-particle:nth-child(13) { left: 55%; animation-duration: 16s; animation-delay: 4s; }
+.lock-particle:nth-child(14) { left: 85%; animation-duration: 11s; animation-delay: 1s; }
+.lock-particle:nth-child(15) { left: 25%; animation-duration: 13s; animation-delay: 3s; }
+
+@keyframes particleFloat {
+    0% { 
+        transform: translateY(100vh) scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% { opacity: 0.8; }
+    50% { opacity: 1; }
+    90% { opacity: 0.8; }
+    100% { 
+        transform: translateY(-10vh) scale(1.5) rotate(720deg);
+        opacity: 0;
+    }
 }
 
 /* ============================================================ */
@@ -2204,39 +2452,7 @@ body::after {
     }
 }
 
-@keyframes spinBorder {
-    to { transform: rotate(360deg); }
-}
-
-@keyframes glowPulse {
-    0%, 100% { 
-        transform: scale(0.8); 
-        opacity: 0.5; 
-    }
-    50% { 
-        transform: scale(1.2); 
-        opacity: 1; 
-    }
-}
-
-@keyframes lockPulse {
-    0%, 100% { 
-        transform: scale(1);
-        box-shadow: 0 0 30px rgba(202,161,74,0.1);
-    }
-    50% { 
-        transform: scale(1.02);
-        box-shadow: 0 0 60px rgba(202,161,74,0.2);
-    }
-}
-
-@keyframes lockShake {
-    0%, 100% { transform: translateX(0) rotate(0deg); }
-    20% { transform: translateX(-8px) rotate(-3deg); }
-    40% { transform: translateX(8px) rotate(3deg); }
-    60% { transform: translateX(-5px) rotate(-2deg); }
-    80% { transform: translateX(5px) rotate(2deg); }
-}
+/* ============================================================ */
     </style>
 </head>
 <body>
@@ -2423,46 +2639,41 @@ body::after {
     }
 </style>
 
-<!-- ===== شاشة الترخيص - ملغاة نهائياً ===== -->
-<div id="licenseOverlay" style="display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; z-index: -9999 !important;"></div>
+<!-- ===== شاشة الترخيص ===== -->
+<div id="licenseOverlay">
+    <div class="license-box">
+        <div class="icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <h1>🔐 نظام الترخيص</h1>
+        <p class="sub">أدخل رمز الترخيص للوصول إلى النظام</p>
+
+        <div class="field">
+            <label><i class="fa-solid fa-key"></i> رمز الترخيص</label>
+            <input type="text" id="licenseCode" placeholder="أدخل رمز الترخيص" value="" autocomplete="off">
+        </div>
+
+        <div class="field">
+            <label><i class="fa-solid fa-microchip"></i> بصمة الجهاز</label>
+            <input type="text" id="deviceFingerprint" readonly placeholder="جاري التوليد...">
+        </div>
+
+        <button class="btn-license" id="verifyBtn" onclick="verifyLicense()">
+            <i class="fa-solid fa-check-circle"></i> ✅ تفعيل الترخيص
+        </button>
+
+        <div class="license-status" id="licenseStatus"></div>
+        <div class="license-offline" id="offlineStatus">📡 جاري التحقق من الأوفلاين...</div>
+        <div class="license-footer">🔐 نظام الترخيص v3.0</div>
+    </div>
+</div>
 
 <script>
 // ============================================================
+// 🔐 نظام الترخيص - يظهر مرة واحدة فقط كل 30 يوم
 // ============================================================
-// 🔐 نظام الترخيص - ملغي نهائياً (شاشة القفل هي المدخل)
-// ============================================================
 
-// ✅ إخفاء شاشة الترخيص فوراً
-document.addEventListener('DOMContentLoaded', function() {
-    const overlay = document.getElementById('licenseOverlay');
-    if (overlay) {
-        overlay.style.display = 'none';
-        overlay.classList.add('hidden');
-    }
-    
-    // تفعيل نظام الغياب مباشرة
-    if (typeof onLicenseSuccess === 'function') {
-        onLicenseSuccess();
-    }
-    
-    // توليد بصمة الجهاز (اختياري)
-    try {
-        generateDeviceFingerprint().then(fp => {
-            const el = document.getElementById('deviceFingerprint');
-            if (el) el.value = fp;
-        });
-    } catch(e) {}
-});
+const LICENSE_API = "https://script.google.com/macros/s/AKfycbwnNwDHb8FNHC0Bs0CNlvQLchqFBCkjkYBFibT8KUWIwt6tgLHCKWnEJu0IGgp--XsX/exec";
 
-// دالة للتوافق مع الكود القديم
-function verifyLicense() {
-    document.getElementById('licenseOverlay').classList.add('hidden');
-    if (typeof onLicenseSuccess === 'function') {
-        onLicenseSuccess();
-    }
-}
-
-// توليد بصمة الجهاز
+// --- توليد بصمة الجهاز ---
 async function generateDeviceFingerprint() {
     const parts = [
         navigator.userAgent || '',
@@ -2495,24 +2706,137 @@ async function generateDeviceFingerprint() {
     return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-function onLicenseSuccess() {
-    console.log('✅ تم الترخيص بنجاح - نظام الغياب يعمل');
-    if (typeof init === 'function') init();
+// --- بيانات الأوفلاين ---
+function getOfflineData() {
+    try { 
+        const raw = localStorage.getItem('license_data'); 
+        return raw ? JSON.parse(raw) : null; 
+    } catch { return null; }
+}
+function saveOfflineData(data) { 
+    localStorage.setItem('license_data', JSON.stringify(data)); 
+}
+function clearOfflineData() {
+    localStorage.removeItem('license_data');
 }
 
-function lockSystemManually() {
-    const overlay = document.getElementById('lockScreen');
-    if (overlay) {
-        overlay.style.display = 'flex';
-        overlay.style.opacity = '1';
-        overlay.style.pointerEvents = 'auto';
-        document.getElementById('pinField').value = '';
-        document.getElementById('lockShieldIcon').className = 'fa-solid fa-shield-halved';
-        document.getElementById('lockShieldIcon').style.color = 'var(--gold-solid)';
-        showToast('🔒 تم قفل النظام');
-        updateLockScreenDates();
+// --- التحقق من صلاحية الأوفلاين ---
+function isOfflineValid() {
+    const data = getOfflineData();
+    if (!data) return false;
+    const expiry = new Date(data.expiry);
+    const now = new Date();
+    return expiry > now;
+}
+
+// --- التحقق من الترخيص ---
+async function verifyLicense() {
+    const code = document.getElementById('licenseCode').value.trim();
+    const device = document.getElementById('deviceFingerprint').value;
+    const statusEl = document.getElementById('licenseStatus');
+    const btn = document.getElementById('verifyBtn');
+
+    if (!code) { showLicenseStatus('⚠️ أدخل رمز الترخيص', 'warning'); return; }
+    if (!device || device.length !== 64) { showLicenseStatus('⚠️ بصمة الجهاز غير صالحة', 'warning'); return; }
+
+    btn.disabled = true;
+    btn.innerHTML = '<span class="loading"></span> جاري التحقق...';
+    showLicenseStatus('⏳ جاري الاتصال...', 'info');
+
+    try {
+        const offline = getOfflineData();
+        let url = `${LICENSE_API}?action=verify&code=${encodeURIComponent(code)}&device=${encodeURIComponent(device)}`;
+        if (offline?.token) url += `&offlineToken=${encodeURIComponent(offline.token)}`;
+
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (data.success) {
+            showLicenseStatus('✅ ' + data.message, 'success');
+            
+            // حفظ بيانات الأوفلاين (30 يوم)
+            const token = data.offlineToken || data.data?.offlineToken;
+            const days = data.offlineDays || data.data?.offlineDays || 30;
+            const expiry = new Date();
+            expiry.setDate(expiry.getDate() + days);
+            
+            saveOfflineData({ 
+                code, 
+                device, 
+                token: token || '',
+                expiry: expiry.toISOString().split('T')[0],
+                merchant: data.trader || data.data?.trader || 'غير محدد'
+            });
+
+            // ✅ إخفاء الترخيص نهائياً (حتى انتهاء الأوفلاين)
+            document.getElementById('licenseOverlay').classList.add('hidden');
+            
+            // تفعيل نظام الغياب
+            if (typeof onLicenseSuccess === 'function') onLicenseSuccess();
+            
+        } else {
+            showLicenseStatus('❌ ' + data.message, 'error');
+        }
+    } catch (e) {
+        // محاولة الأوفلاين
+        const offline = getOfflineData();
+        if (offline && offline.code === code && isOfflineValid()) {
+            showLicenseStatus('✅ تم التحقق من الأوفلاين', 'success');
+            document.getElementById('licenseOverlay').classList.add('hidden');
+            if (typeof onLicenseSuccess === 'function') onLicenseSuccess();
+            return;
+        }
+        showLicenseStatus('❌ فشل الاتصال ولا توجد صلاحية أوفلاين صالحة', 'error');
+    }
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fa-solid fa-check-circle"></i> ✅ تفعيل الترخيص';
+}
+
+function showLicenseStatus(msg, type) {
+    const el = document.getElementById('licenseStatus');
+    el.className = 'license-status show ' + type;
+    el.textContent = msg;
+}
+
+function updateOfflineStatusUI() {
+    const data = getOfflineData();
+    const el = document.getElementById('offlineStatus');
+    if (!data) { 
+        el.innerHTML = '⚠️ وضع الأوفلاين غير مفعل - أدخل رمز الترخيص';
+        return; 
+    }
+    const days = Math.max(0, Math.ceil((new Date(data.expiry) - new Date()) / (1000*60*60*24)));
+    if (days > 0) {
+        el.innerHTML = `✅ الأوفلاين نشط - متبقي ${days} يوم - مرحباً ${data.merchant || ''}`;
+    } else {
+        el.innerHTML = '⛔ انتهت صلاحية الأوفلاين - أدخل رمز الترخيص للتجديد';
     }
 }
+
+// --- دالة لقفل النظام يدوياً (تظهر شاشة الترخيص مرة أخرى) ---
+function lockSystemManually() {
+    clearOfflineData();
+    document.getElementById('licenseOverlay').classList.remove('hidden');
+    document.getElementById('licenseCode').value = '';
+    document.getElementById('licenseStatus').className = 'license-status';
+    document.getElementById('licenseStatus').textContent = '';
+    showLicenseStatus('🔒 تم قفل النظام - أدخل الرمز لإعادة التفعيل', 'warning');
+}
+
+/// --- تشغيل عند التحميل ---
+document.addEventListener('DOMContentLoaded', async function() {
+    // إخفاء شاشة الترخيص مباشرة
+    document.getElementById('licenseOverlay').classList.add('hidden');
+    
+    // تفعيل نظام الغياب مباشرة
+    if (typeof onLicenseSuccess === 'function') onLicenseSuccess();
+    
+    // توليد بصمة الجهاز (اختياري)
+    try {
+        const fp = await generateDeviceFingerprint();
+        document.getElementById('deviceFingerprint').value = fp;
+    } catch(e) {}
+});
 
 // ============================================================
 // 🔓 دالة تُستدعى من نظام الغياب لإضافة زر القفل
@@ -2534,18 +2858,7 @@ function lockSystemManually() {
 <div id="particlesContainer" class="bg-particles"></div>
 
 <div id="starsContainer" class="stars-container"></div>
-<div class="lock-screen-overlay" id="lockScreen" style="
-    display: flex !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-    z-index: 99999 !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background: radial-gradient(ellipse at 50% 50%, #0a0a1a 0%, #050510 50%, #000000 100%) !important;
-">
+<div class="lock-screen-overlay" id="lockScreen">
     
     <!-- الخلفية السينمائية -->
     <div class="lock-bg-animation">
@@ -2576,378 +2889,86 @@ function lockSystemManually() {
     </div>
 
     <!-- بطاقة الدخول مع الإطار الذهبي -->
-    <div class="lock-card" style="
-        position: relative !important;
-        z-index: 1 !important;
-        background: rgba(10, 10, 30, 0.75) !important;
-        backdrop-filter: blur(40px) saturate(1.4) !important;
-        -webkit-backdrop-filter: blur(40px) saturate(1.4) !important;
-        border-radius: 32px !important;
-        padding: 45px 35px 35px !important;
-        width: 100% !important;
-        max-width: 460px !important;
-        text-align: center !important;
-        border: 3px solid rgba(202, 161, 74, 0.35) !important;
-        box-shadow: 
-            0 0 20px rgba(202, 161, 74, 0.12),
-            0 0 40px rgba(202, 161, 74, 0.06),
-            0 0 80px rgba(202, 161, 74, 0.03),
-            inset 0 0 20px rgba(202, 161, 74, 0.04) !important;
-        animation: lockCardIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-        margin: 0 auto !important;
-    ">
+    <div class="lock-card">
         
         <!-- الأيقونة -->
-        <div class="lock-icon-container" style="
-            width: 100px; 
-            height: 100px; 
-            margin: 0 auto 18px; 
-            background: rgba(255,255,255,0.03);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 2px solid rgba(255,255,255,0.08);
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            box-shadow: 
-                0 8px 32px rgba(0,0,0,0.3),
-                inset 0 1px 0 rgba(255,255,255,0.1);
-            animation: lockPulse 3s ease-in-out infinite;
-            position: relative;
-        ">
-            <div style="
-                position: absolute;
-                inset: -4px;
-                border-radius: 50%;
-                background: linear-gradient(135deg, rgba(202,161,74,0.3), transparent, rgba(202,161,74,0.3));
-                padding: 2px;
-                mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-                -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-                -webkit-mask-composite: xor;
-                mask-composite: exclude;
-            "></div>
-            
-            <span id="lockShieldIcon" style="
-                font-size: 3.6rem; 
-                color: #f8fafc; 
-                transition: all 0.3s ease; 
-                line-height: 1;
-                text-shadow: 0 0 30px rgba(202,161,74,0.2);
-                z-index: 1;
-            ">
-                🔒
-            </span>
+        <div class="lock-icon-container" id="lockIconContainer">
+            <i class="fa-solid fa-shield-halved" id="lockShieldIcon"></i>
         </div>
-        
+
         <!-- العنوان -->
-        <h2 style="
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            background-size: 300% 300%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 2px;
-            letter-spacing: 2px;
-            animation: shimmerText 4s ease-in-out infinite;
-        ">نظام المدارس الذكي</h2>
+        <h2>نظام المدارس الذكي</h2>
+        <p class="sub-title">✦ الإصدار الذهبي المعتمد ✦</p>
         
-        <p class="sub-title" style="
-            color: rgba(148, 163, 184, 0.6);
-            font-size: 0.8rem;
-            margin-bottom: 4px;
-            font-weight: 500;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-        ">✦ الإصدار الذهبي المعتمد ✦</p>
-        
-        <div class="lock-divider" style="
-            width: 80px;
-            height: 2px;
-            margin: 10px auto 14px;
-            background: linear-gradient(90deg, transparent, #caa14a, #fcf6ba, #caa14a, transparent);
-            border-radius: 2px;
-            animation: dividerPulse 3s ease-in-out infinite;
-            box-shadow: 0 0 20px rgba(202, 161, 74, 0.2);
-        "></div>
+        <div class="lock-divider"></div>
 
         <!-- اسم المدرسة -->
-        <div class="lock-school-name" style="
-            display: inline-block;
-            margin: 6px auto 14px;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, rgba(202, 161, 74, 0.10), rgba(202, 161, 74, 0.03));
-            border: 1px solid rgba(202, 161, 74, 0.2);
-            border-radius: 16px;
-            box-shadow: 0 4px 30px rgba(202, 161, 74, 0.08);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        ">
-            <i class="fa-solid fa-school" style="color: #caa14a; font-size: 1.2rem; margin-left: 8px; position: relative; z-index: 1;"></i>
-            <span style="
-                background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-                background-size: 300% 300%;
-                -webkit-background-clip: text;
-                -webkit-text-fill-color: transparent;
-                font-size: 1.2rem;
-                font-weight: 800;
-                letter-spacing: 0.5px;
-                position: relative;
-                z-index: 1;
-                animation: shimmerText 3s ease-in-out infinite;
-            ">مدرسة الشهيد علي غالب الرصاص</span>
+        <div class="lock-school-name">
+            <i class="fa-solid fa-school"></i>
+            <span>مدرسة الشهيد علي غالب الرصاص</span>
         </div>
 
         <!-- التاريخ -->
-        <div class="lock-date-container" style="
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            background: rgba(15, 23, 42, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 16px;
-            padding: 14px 18px;
-            margin-bottom: 18px;
-            backdrop-filter: blur(10px);
-        ">
-            <div class="lock-date-item hijri" id="lockHijriDate" style="
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
-                font-size: 1rem;
-                font-weight: 600;
-                color: #caa14a;
-            ">
+        <div class="lock-date-container">
+            <div class="lock-date-item hijri" id="lockHijriDate">
                 <i class="fa-solid fa-moon"></i> جاري حساب التاريخ الهجري...
             </div>
-            <div class="lock-date-item gregorian" id="lockGregorianDate" style="
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
-                font-size: 0.95rem;
-                font-weight: 600;
-                color: rgba(248, 250, 252, 0.7);
-                font-weight: 500;
-            ">
+            <div class="lock-date-item gregorian" id="lockGregorianDate">
                 <i class="fa-solid fa-calendar-days"></i> جاري حساب التاريخ الميلادي...
             </div>
         </div>
 
         <!-- حقل PIN -->
-        <div class="pin-input-wrapper" style="position: relative; margin-bottom: 14px;">
+        <div class="pin-input-wrapper">
             <input type="password" id="pinField" class="pin-input" 
                    placeholder="••••••••" maxlength="8" 
-                   oninput="verifyPin()" autocomplete="off"
-                   style="
-                       width: 100%;
-                       padding: 18px 20px;
-                       border-radius: 18px;
-                       border: 2px solid rgba(255, 255, 255, 0.06);
-                       background: rgba(15, 23, 42, 0.5);
-                       color: #f8fafc;
-                       font-size: 1.8rem;
-                       letter-spacing: 14px;
-                       text-align: center;
-                       outline: none;
-                       transition: all 0.4s ease;
-                       font-weight: 700;
-                       height: 70px;
-                       backdrop-filter: blur(10px);
-                       font-family: 'Tajawal', sans-serif;
-                   ">
+                   oninput="verifyPin()" autocomplete="off">
         </div>
 
         <!-- الأزرار -->
-        <div class="lock-actions" style="width: 100% !important; direction: rtl !important;">
+        <div class="lock-actions">
             
             <!-- تعديل الرقم السري -->
-            <button class="lock-btn lock-btn-outline" onclick="toggleChangePinPanel()" style="
-                width: 100%;
-                padding: 14px;
-                border: none;
-                border-radius: 16px;
-                font-weight: 700;
-                font-size: 0.95rem;
-                cursor: pointer;
-                transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                font-family: 'Tajawal', sans-serif;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
-                position: relative;
-                overflow: hidden;
-                background: rgba(255,255,255,0.03);
-                border: 1px solid rgba(255,255,255,0.06);
-                color: rgba(148, 163, 184, 0.7);
-            ">
+            <button class="lock-btn lock-btn-outline" onclick="toggleChangePinPanel()">
                 <i class="fa-solid fa-key"></i> تعديل رمز الدخول
             </button>
 
             <!-- لوحة تغيير الرقم السري -->
-            <div class="change-pin-panel" id="changePinPanel" style="display: none; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(255,255,255,0.08); animation: fadeIn 0.3s ease;">
+            <div class="change-pin-panel" id="changePinPanel">
                 <input type="password" id="oldPinField" class="pin-input" 
-                       placeholder="الرمز الحالي" maxlength="8"
-                       style="
-                           width: 100%;
-                           padding: 12px 16px;
-                           border-radius: 14px;
-                           border: 1px solid rgba(255, 255, 255, 0.06);
-                           background: rgba(15, 23, 42, 0.5);
-                           color: #f8fafc;
-                           font-size: 1.2rem;
-                           letter-spacing: 8px;
-                           text-align: center;
-                           outline: none;
-                           transition: all 0.4s ease;
-                           font-weight: 700;
-                           height: 55px;
-                           backdrop-filter: blur(10px);
-                           font-family: 'Tajawal', sans-serif;
-                           margin-bottom: 10px;
-                       ">
+                       placeholder="الرمز الحالي" maxlength="8" style="margin-bottom:10px;">
                 <input type="password" id="newPinField" class="pin-input" 
-                       placeholder="الرمز الجديد" maxlength="8"
-                       style="
-                           width: 100%;
-                           padding: 12px 16px;
-                           border-radius: 14px;
-                           border: 1px solid rgba(255, 255, 255, 0.06);
-                           background: rgba(15, 23, 42, 0.5);
-                           color: #f8fafc;
-                           font-size: 1.2rem;
-                           letter-spacing: 8px;
-                           text-align: center;
-                           outline: none;
-                           transition: all 0.4s ease;
-                           font-weight: 700;
-                           height: 55px;
-                           backdrop-filter: blur(10px);
-                           font-family: 'Tajawal', sans-serif;
-                           margin-bottom: 10px;
-                       ">
-                <button class="lock-btn lock-btn-gold" onclick="saveNewPin()" style="
-                    width: 100%;
-                    padding: 14px;
-                    border: none;
-                    border-radius: 16px;
-                    font-weight: 700;
-                    font-size: 0.95rem;
-                    cursor: pointer;
-                    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                    font-family: 'Tajawal', sans-serif;
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 10px;
-                    position: relative;
-                    overflow: hidden;
-                    background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728);
-                    color: #0f172a;
-                    box-shadow: 0 4px 30px rgba(202, 161, 74, 0.2);
-                ">
+                       placeholder="الرمز الجديد" maxlength="8" style="margin-bottom:10px;">
+                <button class="lock-btn lock-btn-gold" onclick="saveNewPin()">
                     <i class="fa-solid fa-floppy-disk"></i> حفظ الرمز الجديد
                 </button>
             </div>
 
             <!-- أزرار الدخول السريع -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px;">
-                <button class="lock-btn lock-btn-teacher" onclick="openTeacherModeFromLock()" style="
-                    width: 100%;
-                    padding: 14px;
-                    border: none;
-                    border-radius: 16px;
-                    font-weight: 700;
-                    font-size: 0.95rem;
-                    cursor: pointer;
-                    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                    font-family: 'Tajawal', sans-serif;
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 10px;
-                    position: relative;
-                    overflow: hidden;
-                    background: linear-gradient(135deg, #8b5cf6, #6d28d9);
-                    color: white;
-                    box-shadow: 0 4px 30px rgba(139, 92, 246, 0.2);
-                ">
+                <button class="lock-btn lock-btn-teacher" onclick="openTeacherModeFromLock()">
                     <i class="fa-solid fa-chalkboard-user"></i> دخول المعلمين
                 </button>
-                <button class="lock-btn lock-btn-admin" onclick="openAdminModeFromLock()" style="
-                    width: 100%;
-                    padding: 14px;
-                    border: none;
-                    border-radius: 16px;
-                    font-weight: 700;
-                    font-size: 0.95rem;
-                    cursor: pointer;
-                    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                    font-family: 'Tajawal', sans-serif;
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 10px;
-                    position: relative;
-                    overflow: hidden;
-                    background: linear-gradient(135deg, #f59e0b, #d97706);
-                    color: #0f172a;
-                    box-shadow: 0 4px 30px rgba(245, 158, 11, 0.2);
-                ">
+                <button class="lock-btn lock-btn-admin" onclick="openAdminModeFromLock()">
                     <i class="fa-solid fa-user-shield"></i> المشرفين
                 </button>
             </div>
 
             <!-- زر الدرجات -->
-            <div id="lockGradesBtnWrapper" style="display: none; margin-top: 8px;">
-                <button class="lock-btn lock-btn-grades" onclick="openGradesFromLock()" style="
-                    width: 100%;
-                    padding: 14px;
-                    border: none;
-                    border-radius: 16px;
-                    font-weight: 700;
-                    font-size: 0.95rem;
-                    cursor: pointer;
-                    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-                    font-family: 'Tajawal', sans-serif;
-                    display: inline-flex;
-                    align-items: center;
-                    justify-content: center;
-                    gap: 10px;
-                    position: relative;
-                    overflow: hidden;
-                    background: linear-gradient(135deg, #caa14a, #b38728);
-                    color: #0f172a;
-                    box-shadow: 0 4px 30px rgba(202, 161, 74, 0.2);
-                ">
+            <div id="lockGradesBtnWrapper" style="display: none;">
+                <button class="lock-btn lock-btn-grades" onclick="openGradesFromLock()">
                     <i class="fa-solid fa-star"></i> 📊 الدرجات
                 </button>
             </div>
 
-            <!-- المطور - نسخة واضحة -->
-            <div class="lock-version" style="
-                margin-top: 14px;
-                padding-top: 12px;
-                border-top: 1px solid rgba(202, 161, 74, 0.08);
-            ">
-                <div style="
-                    font-size: 0.8rem;
-                    color: rgba(202, 161, 74, 0.5);
-                    direction: rtl;
-                    font-weight: 500;
-                ">
-                    برمجة وتطوير: <strong style="color: rgba(202, 161, 74, 0.8); font-weight: 800;">نصر العامري</strong>
-                    <span style="margin: 0 10px; color: rgba(202, 161, 74, 0.15);">|</span>
-                    📱 <span style="color: rgba(202, 161, 74, 0.6); font-weight: 600; direction: ltr; display: inline-block;">770362878</span>
-                </div>
-            </div>
-        </div>
-        
+      <!-- المطور - نسخة واضحة -->
+<div class="lock-version" style="margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(202, 161, 74, 0.08);">
+    <div style="font-size: 0.8rem; color: rgba(202, 161, 74, 0.5); direction: rtl; font-weight: 500;">
+        برمجة وتطوير: <strong style="color: rgba(202, 161, 74, 0.8); font-weight: 800;">نصر العامري</strong>
+        <span style="margin: 0 10px; color: rgba(202, 161, 74, 0.15);">|</span>
+        📱 <span style="color: rgba(202, 161, 74, 0.6); font-weight: 600; direction: ltr; display: inline-block;">770362878</span>
     </div>
+</div>
 </div>
         
     </div>
@@ -3137,7 +3158,7 @@ function lockSystemManually() {
     </button>
 
     <!-- زر طباعة الشهادات -->
-    <button onclick="window.open('https://script.google.com/macros/s/AKfycbyCMks4cIrOU7-BGM_SmasnP1k6kwSq2Wlp4C7DynhejHa605rFBeIjUU6KQ2rkde9urw/exec', '_blank')"
+    <button onclick="window.open('https://script.google.com/macros/s/AKfycbxJReG21mUyfCayN7LKDHRnr8NLU1xMUshLRPHqWISKf_C3YmAdpi4h-ssp0leRFKT5aA/exec', '_blank')"
         style="background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728); 
                border: none; 
                padding: 14px 10px; 
@@ -3485,34 +3506,32 @@ const API_KEY = "AhmedSchool2024";
     }
 
     function verifyPin() {
-    const inputField = document.getElementById('pinField');
-    const overlay = document.getElementById('lockScreen');
-    const shieldIcon = document.getElementById('lockShieldIcon');
-    const currentPin = getSavedPin();
+        const inputField = document.getElementById('pinField');
+        const overlay = document.getElementById('lockScreen');
+        const shieldIcon = document.getElementById('lockShieldIcon');
+        const currentPin = getSavedPin();
 
-    if (inputField.value === currentPin) {
-        shieldIcon.className = "fa-solid fa-shield-cat";
-        shieldIcon.style.color = "#10b981";
-        showToast("✅ تم التحقق بنجاح");
-        
-        // ✅ إخفاء شاشة القفل نهائياً وبدون تلاعب
-        setTimeout(() => {
-            overlay.style.display = "none";
-            overlay.style.opacity = "0";
-            overlay.style.pointerEvents = "none";
-            inputField.blur();
-        }, 300);
-        
-    } else if (inputField.value.length >= currentPin.length) {
-        shieldIcon.className = "fa-solid fa-circle-xmark";
-        shieldIcon.style.color = "#ef4444";
-        setTimeout(() => {
-            inputField.value = "";
-            shieldIcon.className = "fa-solid fa-shield-halved";
-            shieldIcon.style.color = "#caa14a";
-        }, 600);
+        if (inputField.value === currentPin) {
+            shieldIcon.className = "fa-solid fa-shield-cat fa-bounce";
+            shieldIcon.style.color = "var(--success)";
+            showToast("تم التحقق من رمز الأمان بنجاح. أهلاً بك!");
+            
+            setTimeout(() => {
+                overlay.style.opacity = "0";
+                overlay.style.pointerEvents = "none";
+                inputField.blur();
+            }, 400);
+        } else if (inputField.value.length >= currentPin.length) {
+            shieldIcon.className = "fa-solid fa-circle-xmark";
+            shieldIcon.style.color = "var(--danger)";
+            setTimeout(() => {
+                inputField.value = "";
+                shieldIcon.className = "fa-solid fa-shield-halved";
+                shieldIcon.style.color = "var(--gold-solid)";
+            }, 600);
+        }
     }
-}
+
     function toggleChangePinPanel() {
         const panel = document.getElementById('changePinPanel');
         panel.style.display = (panel.style.display === 'block') ? 'none' : 'block';
@@ -4009,69 +4028,100 @@ const API_KEY = "AhmedSchool2024";
             <head>
                 <meta charset="UTF-8">
                 <title>تقرير الغيابات الشهري</title>
-      <style>
-/* ===== أيقونات شاشة القفل - رموز Unicode ===== */
-.fa-shield-halved::before { content: "🔐"; }
-.fa-moon::before { content: "🌙"; }
-.fa-calendar-days::before { content: "📅"; }
-.fa-school::before { content: "🏫"; }
-.fa-key::before { content: "🔑"; }
-.fa-floppy-disk::before { content: "💾"; }
-.fa-chalkboard-user::before { content: "👨‍🏫"; }
-.fa-user-shield::before { content: "🛡️"; }
-.fa-star::before { content: "⭐"; }
-.fa-lock::before { content: "🔒"; }
-.fa-wifi::before { content: "📶"; }
-.fa-wifi-slash::before { content: "📴"; }
-.fa-phone::before { content: "📞"; }
-.fa-download::before { content: "⬇️"; }
-.fa-mobile-screen-button::before { content: "📱"; }
-.fa-arrows-rotate::before { content: "🔄"; }
-.fa-search::before { content: "🔍"; }
-.fa-times::before { content: "✖️"; }
-.fa-print::before { content: "🖨️"; }
-.fa-certificate::before { content: "📜"; }
-.fa-users::before { content: "👥"; }
-.fa-user-slash::before { content: "🚫"; }
-.fa-circle-check::before { content: "✅"; }
-.fa-circle-exclamation::before { content: "⚠️"; }
-.fa-triangle-exclamation::before { content: "⚠️"; }
-.fa-cloud-upload-alt::before { content: "☁️⬆️"; }
-.fa-cloud-sun::before { content: "⛅"; }
-.fa-cloud-download-alt::before { content: "☁️⬇️"; }
-.fa-id-card-clip::before { content: "🪪"; }
-.fa-graduation-cap::before { content: "🎓"; }
-.fa-coins::before { content: "💰"; }
-.fa-money-bill-wave::before { content: "💵"; }
-.fa-chart-pie::before { content: "📊"; }
-.fa-brain::before { content: "🧠"; }
-.fa-book-open::before { content: "📖"; }
-.fa-info-circle::before { content: "ℹ️"; }
-.fa-list-check::before { content: "✅📋"; }
-.fa-clipboard-check::before { content: "📋✅"; }
-.fa-calendar-alt::before { content: "📅"; }
-.fa-file-excel::before { content: "📊"; }
-.fa-calculator::before { content: "🧮"; }
-.fa-chart-simple::before { content: "📊"; }
-.fa-eye-slash::before { content: "🚫👁️"; }
-.fa-folder-open::before { content: "📂"; }
-.fa-users-slash::before { content: "🚫👥"; }
-.fa-magnifying-glass::before { content: "🔍"; }
-.fa-database::before { content: "🗄️"; }
-.fa-sync::before { content: "🔄"; }
-.fa-version-tag::before { content: "🏷️"; }
-.fa-qrcode::before { content: "📱"; }
+                <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+                <!-- ===== أيقونات تعمل بدون إنترنت 100% ===== -->
+<style>
+/* ============================================================ */
+/* 🎨 أيقونات يونيكود - تعمل بدون تحميل خارجي                  */
+/* ============================================================ */
 
-/* ===== خط بديل (موجود في كل جهاز) ===== */
-* {
-    font-family: 'Segoe UI', Tahoma, Arial, sans-serif !important;
-}
-
-/* ===== تصحيح عرض الرموز ===== */
-i, .fa, .fas, .far, .fab, .fa-solid, .fa-regular, .fa-brands {
+/* استبدال جميع أيقونات Font Awesome بأيقونات يونيكود */
+.fa-solid, .fa-regular, .fa-brands, .fa {
+    font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', system-ui, sans-serif !important;
     font-style: normal !important;
-    font-family: 'Segoe UI', Tahoma, Arial, sans-serif !important;
+    font-weight: normal !important;
 }
+
+/* ===== أيقونات شاشة القفل ===== */
+.fa-shield-halved:before { content: "🔐"; }
+.fa-moon:before { content: "🌙"; }
+.fa-calendar-days:before { content: "📅"; }
+.fa-key:before { content: "🔑"; }
+.fa-chalkboard-user:before { content: "👨‍🏫"; }
+.fa-user-shield:before { content: "🛡️"; }
+.fa-star:before { content: "⭐"; }
+.fa-school:before { content: "🏫"; }
+.fa-lock:before { content: "🔒"; }
+.fa-unlock:before { content: "🔓"; }
+.fa-check:before { content: "✅"; }
+.fa-check-circle:before { content: "✅"; }
+.fa-times:before { content: "❌"; }
+.fa-circle-xmark:before { content: "❌"; }
+.fa-print:before { content: "🖨️"; }
+.fa-download:before { content: "📥"; }
+.fa-cloud:before { content: "☁️"; }
+.fa-cloud-arrow-up:before { content: "☁️⬆️"; }
+.fa-cloud-download-alt:before { content: "☁️⬇️"; }
+.fa-wifi:before { content: "📶"; }
+.fa-wifi-slash:before { content: "📴"; }
+.fa-users:before { content: "👥"; }
+.fa-user-slash:before { content: "🚫👤"; }
+.fa-user-graduate:before { content: "🎓"; }
+.fa-graduation-cap:before { content: "🎓"; }
+.fa-phone:before { content: "📞"; }
+.fa-search:before { content: "🔍"; }
+.fa-folder-open:before { content: "📂"; }
+.fa-arrows-rotate:before { content: "🔄"; }
+.fa-sync:before { content: "🔄"; }
+.fa-trash-can:before { content: "🗑️"; }
+.fa-eye-slash:before { content: "👁️‍🗨️"; }
+.fa-chart-simple:before { content: "📊"; }
+.fa-chart-pie:before { content: "📊"; }
+.fa-trophy:before { content: "🏆"; }
+.fa-book-open:before { content: "📖"; }
+.fa-id-card-clip:before { content: "🪪"; }
+.fa-coins:before { content: "💰"; }
+.fa-money-bill-wave:before { content: "💰"; }
+.fa-calculator:before { content: "🧮"; }
+.fa-brain:before { content: "🧠"; }
+.fa-triangle-exclamation:before { content: "⚠️"; }
+.fa-circle-exclamation:before { content: "⚠️"; }
+.fa-info-circle:before { content: "ℹ️"; }
+.fa-code:before { content: "💻"; }
+.fa-version-tag:before { content: "🏷️"; }
+.fa-certificate:before { content: "📜"; }
+.fa-database:before { content: "🗄️"; }
+.fa-magnifying-glass:before { content: "🔍"; }
+.fa-calendar-alt:before { content: "📅"; }
+.fa-calendar-day:before { content: "📅"; }
+.fa-file-excel:before { content: "📊"; }
+.fa-file-pdf:before { content: "📄"; }
+.fa-file-circle-plus:before { content: "📄➕"; }
+.fa-qrcode:before { content: "📱"; }
+.fa-mobile-screen-button:before { content: "📱"; }
+.fa-circle-check:before { content: "✅"; }
+.fa-circle:before { content: "●"; }
+
+/* ===== أيقونات وسائل التواصل ===== */
+.fa-brands.fa-whatsapp:before { content: "📱"; }
+.fa-comment-sms:before { content: "💬"; }
+.fa-whatsapp:before { content: "📱"; }
+.fa-instagram:before { content: "📸"; }
+.fa-facebook:before { content: "📘"; }
+.fa-twitter:before { content: "🐦"; }
+.fa-youtube:before { content: "📺"; }
+
+/* ===== أيقونات إضافية ===== */
+.fa-gold:before { content: "🌟"; }
+.fa-star-gold:before { content: "⭐"; }
+.fa-education:before { content: "📚"; }
+.fa-teacher:before { content: "👨‍🏫"; }
+.fa-student:before { content: "👨‍🎓"; }
+.fa-school-building:before { content: "🏫"; }
+.fa-notification:before { content: "🔔"; }
+.fa-settings:before { content: "⚙️"; }
+.fa-admin:before { content: "👑"; }
+.fa-principal:before { content: "🧑‍🏫"; }
 </style>
                 <style>
                     body {
@@ -5073,7 +5123,50 @@ i, .fa, .fas, .far, .fab, .fa-solid, .fa-regular, .fa-brands {
     init();
 </script>
 
-<script>    
+<script>
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            const swCode = `
+                const CACHE_NAME = 'smart-absence-v7-pwa';
+                const ASSETS = [
+                    '/',
+                    location.href,
+                    'https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap',
+                    'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
+                ];
+
+                self.addEventListener('install', (e) => {
+                    self.skipWaiting();
+                    e.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(ASSETS)));
+                });
+
+                self.addEventListener('fetch', (e) => {
+                    e.respondWith(
+                        caches.match(e.request).then(cachedResponse => {
+                            if (cachedResponse) return cachedResponse;
+                            return fetch(e.request).catch(() => new Response(''));
+                        })
+                    );
+                });
+
+                self.addEventListener('activate', (e) => {
+                    e.waitUntil(
+                        caches.keys().then(keys => Promise.all(
+                            keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
+                        ))
+                    );
+                });
+            `;
+            
+            const blob = new Blob([swCode], { type: 'application/javascript' });
+            const swUrl = URL.createObjectURL(blob);
+            
+            navigator.serviceWorker.register(swUrl).then(() => {
+                console.log('✅ PWA Service Worker Registered Successfully.');
+            }).catch(err => console.log('❌ Service Worker Registration Failed', err));
+        });
+    }
+    
     // ============================================
     // 🔍 البحث العام في جميع الفصول
     // ============================================
@@ -5622,7 +5715,100 @@ function openPrintWindow(content, fileName = 'طباعة') {
             <meta charset="UTF-8">
             <title>${fileName}</title>
             <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+            <!-- ===== أيقونات تعمل بدون إنترنت 100% ===== -->
+<style>
+/* ============================================================ */
+/* 🎨 أيقونات يونيكود - تعمل بدون تحميل خارجي                  */
+/* ============================================================ */
+
+/* استبدال جميع أيقونات Font Awesome بأيقونات يونيكود */
+.fa-solid, .fa-regular, .fa-brands, .fa {
+    font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', system-ui, sans-serif !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+}
+
+/* ===== أيقونات شاشة القفل ===== */
+.fa-shield-halved:before { content: "🔐"; }
+.fa-moon:before { content: "🌙"; }
+.fa-calendar-days:before { content: "📅"; }
+.fa-key:before { content: "🔑"; }
+.fa-chalkboard-user:before { content: "👨‍🏫"; }
+.fa-user-shield:before { content: "🛡️"; }
+.fa-star:before { content: "⭐"; }
+.fa-school:before { content: "🏫"; }
+.fa-lock:before { content: "🔒"; }
+.fa-unlock:before { content: "🔓"; }
+.fa-check:before { content: "✅"; }
+.fa-check-circle:before { content: "✅"; }
+.fa-times:before { content: "❌"; }
+.fa-circle-xmark:before { content: "❌"; }
+.fa-print:before { content: "🖨️"; }
+.fa-download:before { content: "📥"; }
+.fa-cloud:before { content: "☁️"; }
+.fa-cloud-arrow-up:before { content: "☁️⬆️"; }
+.fa-cloud-download-alt:before { content: "☁️⬇️"; }
+.fa-wifi:before { content: "📶"; }
+.fa-wifi-slash:before { content: "📴"; }
+.fa-users:before { content: "👥"; }
+.fa-user-slash:before { content: "🚫👤"; }
+.fa-user-graduate:before { content: "🎓"; }
+.fa-graduation-cap:before { content: "🎓"; }
+.fa-phone:before { content: "📞"; }
+.fa-search:before { content: "🔍"; }
+.fa-folder-open:before { content: "📂"; }
+.fa-arrows-rotate:before { content: "🔄"; }
+.fa-sync:before { content: "🔄"; }
+.fa-trash-can:before { content: "🗑️"; }
+.fa-eye-slash:before { content: "👁️‍🗨️"; }
+.fa-chart-simple:before { content: "📊"; }
+.fa-chart-pie:before { content: "📊"; }
+.fa-trophy:before { content: "🏆"; }
+.fa-book-open:before { content: "📖"; }
+.fa-id-card-clip:before { content: "🪪"; }
+.fa-coins:before { content: "💰"; }
+.fa-money-bill-wave:before { content: "💰"; }
+.fa-calculator:before { content: "🧮"; }
+.fa-brain:before { content: "🧠"; }
+.fa-triangle-exclamation:before { content: "⚠️"; }
+.fa-circle-exclamation:before { content: "⚠️"; }
+.fa-info-circle:before { content: "ℹ️"; }
+.fa-code:before { content: "💻"; }
+.fa-version-tag:before { content: "🏷️"; }
+.fa-certificate:before { content: "📜"; }
+.fa-database:before { content: "🗄️"; }
+.fa-magnifying-glass:before { content: "🔍"; }
+.fa-calendar-alt:before { content: "📅"; }
+.fa-calendar-day:before { content: "📅"; }
+.fa-file-excel:before { content: "📊"; }
+.fa-file-pdf:before { content: "📄"; }
+.fa-file-circle-plus:before { content: "📄➕"; }
+.fa-qrcode:before { content: "📱"; }
+.fa-mobile-screen-button:before { content: "📱"; }
+.fa-circle-check:before { content: "✅"; }
+.fa-circle:before { content: "●"; }
+
+/* ===== أيقونات وسائل التواصل ===== */
+.fa-brands.fa-whatsapp:before { content: "📱"; }
+.fa-comment-sms:before { content: "💬"; }
+.fa-whatsapp:before { content: "📱"; }
+.fa-instagram:before { content: "📸"; }
+.fa-facebook:before { content: "📘"; }
+.fa-twitter:before { content: "🐦"; }
+.fa-youtube:before { content: "📺"; }
+
+/* ===== أيقونات إضافية ===== */
+.fa-gold:before { content: "🌟"; }
+.fa-star-gold:before { content: "⭐"; }
+.fa-education:before { content: "📚"; }
+.fa-teacher:before { content: "👨‍🏫"; }
+.fa-student:before { content: "👨‍🎓"; }
+.fa-school-building:before { content: "🏫"; }
+.fa-notification:before { content: "🔔"; }
+.fa-settings:before { content: "⚙️"; }
+.fa-admin:before { content: "👑"; }
+.fa-principal:before { content: "🧑‍🏫"; }
+</style>
             <style>
                 body {
                     margin: 0;
@@ -8133,7 +8319,100 @@ function closeUserGuide() {
                 <meta charset="UTF-8">
                 <title>إيصال سداد - ${student.name}</title>
                 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
-                <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+                <!-- ===== أيقونات تعمل بدون إنترنت 100% ===== -->
+<style>
+/* ============================================================ */
+/* 🎨 أيقونات يونيكود - تعمل بدون تحميل خارجي                  */
+/* ============================================================ */
+
+/* استبدال جميع أيقونات Font Awesome بأيقونات يونيكود */
+.fa-solid, .fa-regular, .fa-brands, .fa {
+    font-family: 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', system-ui, sans-serif !important;
+    font-style: normal !important;
+    font-weight: normal !important;
+}
+
+/* ===== أيقونات شاشة القفل ===== */
+.fa-shield-halved:before { content: "🔐"; }
+.fa-moon:before { content: "🌙"; }
+.fa-calendar-days:before { content: "📅"; }
+.fa-key:before { content: "🔑"; }
+.fa-chalkboard-user:before { content: "👨‍🏫"; }
+.fa-user-shield:before { content: "🛡️"; }
+.fa-star:before { content: "⭐"; }
+.fa-school:before { content: "🏫"; }
+.fa-lock:before { content: "🔒"; }
+.fa-unlock:before { content: "🔓"; }
+.fa-check:before { content: "✅"; }
+.fa-check-circle:before { content: "✅"; }
+.fa-times:before { content: "❌"; }
+.fa-circle-xmark:before { content: "❌"; }
+.fa-print:before { content: "🖨️"; }
+.fa-download:before { content: "📥"; }
+.fa-cloud:before { content: "☁️"; }
+.fa-cloud-arrow-up:before { content: "☁️⬆️"; }
+.fa-cloud-download-alt:before { content: "☁️⬇️"; }
+.fa-wifi:before { content: "📶"; }
+.fa-wifi-slash:before { content: "📴"; }
+.fa-users:before { content: "👥"; }
+.fa-user-slash:before { content: "🚫👤"; }
+.fa-user-graduate:before { content: "🎓"; }
+.fa-graduation-cap:before { content: "🎓"; }
+.fa-phone:before { content: "📞"; }
+.fa-search:before { content: "🔍"; }
+.fa-folder-open:before { content: "📂"; }
+.fa-arrows-rotate:before { content: "🔄"; }
+.fa-sync:before { content: "🔄"; }
+.fa-trash-can:before { content: "🗑️"; }
+.fa-eye-slash:before { content: "👁️‍🗨️"; }
+.fa-chart-simple:before { content: "📊"; }
+.fa-chart-pie:before { content: "📊"; }
+.fa-trophy:before { content: "🏆"; }
+.fa-book-open:before { content: "📖"; }
+.fa-id-card-clip:before { content: "🪪"; }
+.fa-coins:before { content: "💰"; }
+.fa-money-bill-wave:before { content: "💰"; }
+.fa-calculator:before { content: "🧮"; }
+.fa-brain:before { content: "🧠"; }
+.fa-triangle-exclamation:before { content: "⚠️"; }
+.fa-circle-exclamation:before { content: "⚠️"; }
+.fa-info-circle:before { content: "ℹ️"; }
+.fa-code:before { content: "💻"; }
+.fa-version-tag:before { content: "🏷️"; }
+.fa-certificate:before { content: "📜"; }
+.fa-database:before { content: "🗄️"; }
+.fa-magnifying-glass:before { content: "🔍"; }
+.fa-calendar-alt:before { content: "📅"; }
+.fa-calendar-day:before { content: "📅"; }
+.fa-file-excel:before { content: "📊"; }
+.fa-file-pdf:before { content: "📄"; }
+.fa-file-circle-plus:before { content: "📄➕"; }
+.fa-qrcode:before { content: "📱"; }
+.fa-mobile-screen-button:before { content: "📱"; }
+.fa-circle-check:before { content: "✅"; }
+.fa-circle:before { content: "●"; }
+
+/* ===== أيقونات وسائل التواصل ===== */
+.fa-brands.fa-whatsapp:before { content: "📱"; }
+.fa-comment-sms:before { content: "💬"; }
+.fa-whatsapp:before { content: "📱"; }
+.fa-instagram:before { content: "📸"; }
+.fa-facebook:before { content: "📘"; }
+.fa-twitter:before { content: "🐦"; }
+.fa-youtube:before { content: "📺"; }
+
+/* ===== أيقونات إضافية ===== */
+.fa-gold:before { content: "🌟"; }
+.fa-star-gold:before { content: "⭐"; }
+.fa-education:before { content: "📚"; }
+.fa-teacher:before { content: "👨‍🏫"; }
+.fa-student:before { content: "👨‍🎓"; }
+.fa-school-building:before { content: "🏫"; }
+.fa-notification:before { content: "🔔"; }
+.fa-settings:before { content: "⚙️"; }
+.fa-admin:before { content: "👑"; }
+.fa-principal:before { content: "🧑‍🏫"; }
+</style>
                 <style>
                     body { margin: 0; padding: 20px; background: #f1f5f9; font-family: 'Tajawal', sans-serif; }
                     @media print { 
@@ -8390,7 +8669,7 @@ function closeUserGuide() {
         );
 
         const msg = 
-            `🏫 *${SCHOOL_NAME}*\n` +
+            `?? *${SCHOOL_NAME}*\n` +
             `━━━━━━━━━━━━━━━━━━━━━━━━━\n` +
             `⚠️ *إنذار رسمي - عدم سداد الرسوم*\n` +
             `━━━━━━━━━━━━━━━━━━━━━━━━━\n\n` +
@@ -9932,7 +10211,7 @@ function closeUserGuide() {
 
                     <!-- ===== سبب الغياب ===== -->
                     <div class="form-group" style="margin-top:10px;">
-                        <label>?? سبب الغياب (إن وجد)</label>
+                        <label>📌 سبب الغياب (إن وجد)</label>
                         <input type="text" id="at_reason" placeholder="سبب الغياب">
                     </div>
 
@@ -16198,342 +16477,11 @@ console.log('✨ تم تفعيل التحسينات الجمالية الذهب�
             }
         });
     </script>
-    <script>
-    // ============================================
-    // 🚀 تسجيل Service Worker - الطريقة الصحيحة
-    // ============================================
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-            navigator.serviceWorker.register('sw.js')
-                .then(function(registration) {
-                    console.log('✅ Service Worker registered successfully!');
-                    console.log('📌 Scope:', registration.scope);
-                })
-                .catch(function(error) {
-                    console.log('❌ Service Worker registration failed:', error);
-                });
-        });
-    }
-</script>
-<!-- ============================================ -->
-<!-- 📱 زر تثبيت التطبيق - لأندرويد فقط           -->
-<!-- ============================================ -->
-
-<style>
-    /* شريط التثبيت السفلي */
-    #installBanner {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: linear-gradient(135deg, #1e293b, #0f172a);
-        border-top: 3px solid #caa14a;
-        padding: 12px 20px;
-        display: none;
-        z-index: 999999;
-        direction: rtl;
-        font-family: 'Tajawal', sans-serif;
-        box-shadow: 0 -4px 30px rgba(0,0,0,0.5);
-        animation: slideUp 0.4s ease;
-    }
-
-    #installBanner .banner-content {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        max-width: 600px;
-        margin: 0 auto;
-        gap: 12px;
-        flex-wrap: wrap;
-    }
-
-    #installBanner .banner-text {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        flex: 1;
-    }
-
-    #installBanner .banner-icon {
-        font-size: 2rem;
-        color: #caa14a;
-    }
-
-    #installBanner .banner-title {
-        color: #f8fafc;
-        font-weight: 700;
-        font-size: 0.95rem;
-        margin: 0;
-    }
-
-    #installBanner .banner-sub {
-        color: #94a3b8;
-        font-size: 0.75rem;
-        margin: 0;
-    }
-
-    #installBanner .banner-actions {
-        display: flex;
-        gap: 8px;
-        flex-shrink: 0;
-    }
-
-    #installBanner .btn-install-android {
-        background: linear-gradient(135deg, #caa14a, #b38728);
-        border: none;
-        padding: 10px 24px;
-        border-radius: 10px;
-        font-weight: 700;
-        font-size: 0.9rem;
-        color: #0f172a;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-family: 'Tajawal', sans-serif;
-        white-space: nowrap;
-    }
-
-    #installBanner .btn-install-android:hover {
-        transform: scale(1.03);
-        box-shadow: 0 4px 20px rgba(202,161,74,0.4);
-    }
-
-    #installBanner .btn-close-banner {
-        background: rgba(255,255,255,0.05);
-        border: 1px solid rgba(255,255,255,0.1);
-        padding: 10px 14px;
-        border-radius: 10px;
-        color: #94a3b8;
-        cursor: pointer;
-        font-size: 0.9rem;
-        transition: all 0.3s ease;
-        font-family: 'Tajawal', sans-serif;
-    }
-
-    #installBanner .btn-close-banner:hover {
-        background: rgba(255,255,255,0.1);
-    }
-
-    @keyframes slideUp {
-        from { transform: translateY(100%); }
-        to { transform: translateY(0); }
-    }
-
-    @media (max-width: 480px) {
-        #installBanner .banner-content {
-            flex-direction: column;
-            align-items: stretch;
-        }
-        #installBanner .banner-actions {
-            justify-content: center;
-        }
-        #installBanner .btn-install-android {
-            padding: 8px 18px;
-            font-size: 0.8rem;
-        }
+    <style>
+    * {
+        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
     }
 </style>
 
-<!-- ===== شريط التثبيت ===== -->
-<div id="installBanner">
-    <div class="banner-content">
-        <div class="banner-text">
-            <span class="banner-icon">📱</span>
-            <div>
-                <div class="banner-title">تثبيت تطبيق المدارس</div>
-                <div class="banner-sub">أضف التطبيق إلى شاشتك الرئيسية</div>
-            </div>
-        </div>
-        <div class="banner-actions">
-            <button class="btn-install-android" id="androidInstallBtn">
-                <i class="fa-solid fa-download"></i> تثبيت
-            </button>
-            <button class="btn-close-banner" id="closeBannerBtn">
-                <i class="fa-solid fa-times"></i>
-            </button>
-        </div>
-    </div>
-</div>
-
-<script>
-    // ============================================================
-    // 📱 نظام التثبيت - لأندرويد فقط
-    // ============================================================
-
-    (function() {
-        'use strict';
-
-        let deferredPrompt = null;
-        const banner = document.getElementById('installBanner');
-        const installBtn = document.getElementById('androidInstallBtn');
-        const closeBtn = document.getElementById('closeBannerBtn');
-
-        // ============================================================
-        // 1️⃣ التحقق إذا كان التطبيق مثبتاً
-        // ============================================================
-        function isAppInstalled() {
-            // في وضع PWA
-            if (window.matchMedia('(display-mode: standalone)').matches) {
-                return true;
-            }
-            // في Safari (iOS) - لكن نتركها لأندرويد فقط
-            if (navigator.standalone === true) {
-                return true;
-            }
-            // تحقق من localStorage
-            if (localStorage.getItem('app_installed_android') === 'true') {
-                return true;
-            }
-            return false;
-        }
-
-        // ============================================================
-        // 2️⃣ إظهار/إخفاء شريط التثبيت
-        // ============================================================
-        function showBanner() {
-            if (isAppInstalled()) return;
-            if (!banner) return;
-            
-            // تأكد من أن المتصفح يدعم التثبيت
-            if (deferredPrompt) {
-                banner.style.display = 'block';
-            }
-        }
-
-        function hideBanner() {
-            if (banner) {
-                banner.style.display = 'none';
-            }
-        }
-
-        // ============================================================
-        // 3️⃣ حدث beforeinstallprompt (أندرويد/Chrome)
-        // ============================================================
-        window.addEventListener('beforeinstallprompt', function(e) {
-            e.preventDefault();
-            deferredPrompt = e;
-            
-            // إذا لم يكن مثبتاً، أظهر شريط التثبيت
-            if (!isAppInstalled()) {
-                setTimeout(showBanner, 2000); // يظهر بعد ثانيتين
-            }
-        });
-
-        // ============================================================
-        // 4️⃣ حدث appinstalled (بعد التثبيت)
-        // ============================================================
-        window.addEventListener('appinstalled', function() {
-            localStorage.setItem('app_installed_android', 'true');
-            hideBanner();
-            showToast('🎉 تم تثبيت التطبيق بنجاح!');
-        });
-
-        // ============================================================
-        // 5️⃣ زر التثبيت
-        // ============================================================
-        if (installBtn) {
-            installBtn.addEventListener('click', function() {
-                if (deferredPrompt) {
-                    // ✅ أندرويد/Chrome
-                    deferredPrompt.prompt();
-                    deferredPrompt.userChoice.then(function(result) {
-                        if (result.outcome === 'accepted') {
-                            localStorage.setItem('app_installed_android', 'true');
-                            hideBanner();
-                            showToast('🎉 تم تثبيت التطبيق بنجاح!');
-                        } else {
-                            showToast('📱 يمكنك التثبيت لاحقاً');
-                        }
-                        deferredPrompt = null;
-                    });
-                } else {
-                    // إذا لم يظهر الـ prompt
-                    showToast('📱 اضغط على القائمة (⋮) ثم اختر "تثبيت التطبيق"');
-                }
-            });
-        }
-
-        // ============================================================
-        // 6️⃣ زر إغلاق الشريط
-        // ============================================================
-        if (closeBtn) {
-            closeBtn.addEventListener('click', function() {
-                hideBanner();
-                // لا نظهره مرة أخرى لمدة 7 أيام
-                localStorage.setItem('install_banner_closed', Date.now().toString());
-            });
-        }
-
-        // ============================================================
-        // 7️⃣ التحقق من إغلاق الشريط مسبقاً
-        // ============================================================
-        function checkBannerClosed() {
-            const closedTime = localStorage.getItem('install_banner_closed');
-            if (closedTime) {
-                const daysPassed = (Date.now() - parseInt(closedTime)) / (1000 * 60 * 60 * 24);
-                if (daysPassed < 7) {
-                    return true; // لا نظهر الشريط لمدة 7 أيام
-                }
-            }
-            return false;
-        }
-
-        // ============================================================
-        // 8️⃣ دالة Toast
-        // ============================================================
-        function showToast(msg) {
-            const old = document.querySelector('.install-toast');
-            if (old) old.remove();
-
-            const toast = document.createElement('div');
-            toast.className = 'install-toast';
-            toast.style.cssText = `
-                position: fixed;
-                bottom: 100px;
-                left: 50%;
-                transform: translateX(-50%);
-                background: #10b981;
-                color: #0f172a;
-                padding: 12px 24px;
-                border-radius: 10px;
-                font-weight: bold;
-                z-index: 99999999;
-                font-family: 'Tajawal', sans-serif;
-                font-size: 0.9rem;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-                animation: fadeIn 0.3s ease;
-                direction: rtl;
-            `;
-            toast.textContent = msg;
-            document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
-        }
-
-        // ============================================================
-        // 9️⃣ التشغيل عند التحميل
-        // ============================================================
-        if (!isAppInstalled() && !checkBannerClosed()) {
-            // ننتظر ظهور الحدث beforeinstallprompt
-            // إذا لم يظهر خلال 5 ثوان، نعرض رسالة بديلة
-            setTimeout(function() {
-                if (!deferredPrompt && !isAppInstalled()) {
-                    // المتصفح لا يدعم التثبيت التلقائي
-                    // نعرض رسالة للمستخدم
-                    if (banner && !checkBannerClosed()) {
-                        banner.style.display = 'block';
-                        // نغير النص قليلاً
-                        const title = banner.querySelector('.banner-title');
-                        if (title) title.textContent = 'تثبيت التطبيق';
-                        const sub = banner.querySelector('.banner-sub');
-                        if (sub) sub.textContent = 'اضغط على القائمة ⋮ ثم اختر "تثبيت التطبيق"';
-                    }
-                }
-            }, 5000);
-        }
-
-        console.log('📱 نظام التثبيت لأندرويد جاهز');
-
-    })();
-</script>
 </body>
 </html>
-
