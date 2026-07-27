@@ -2464,6 +2464,12 @@ body {
     height: auto !important;
     position: relative !important;
 }
+/* ============================================================ */
+/* ✅ خطوط تعمل بدون تحميل خارجي                                */
+/* ============================================================ */
+* {
+    font-family: 'Noto Naskh Arabic', 'Amiri', 'Tahoma', 'Arial', system-ui, sans-serif !important;
+}
     </style>
 </head>
 <body>
@@ -4850,64 +4856,118 @@ const API_KEY = "AhmedSchool2024";
         }
     }
     
-    async function init() {
-        loadAbsenceFromStorage();
-
-        const localRaw = localStorage.getItem("cached_all_students");
-        if (localRaw) {
-            try {
-                allStudentsRaw = JSON.parse(localRaw);
-                console.log('✅ تم تحميل البيانات من الذاكرة المحلية');
-                populateGradesDropdown();
-            } catch (e) {
-                console.warn('⚠️ فشل تحميل البيانات المحلية', e);
-            }
-        }
-
-        updateNetworkUI();
-        updateLockScreenDates();
-        loadThemePreference();
-
-        const d = new Date();
-        document.getElementById('todayDate').innerText = d.toLocaleDateString('ar-EG', { day:'numeric', month:'short' });
-
-        await loadClassNames();
-
-        const selectedGrade = document.getElementById('classSelect').value;
-        if (selectedGrade) {
-            await loadStudents();
-        } else {
-            const container = document.getElementById('studentsContainer');
-            if (allStudentsRaw && allStudentsRaw.length > 0) {
-                const firstGrade = allStudentsRaw[0]?.grade;
-                if (firstGrade) {
-                    document.getElementById('classSelect').value = firstGrade;
-                    await loadStudents();
-                }
-            } else {
-                container.innerHTML = `<div class="empty-state"><i class="fa-solid fa-folder-open"></i><p>يرجى تحديد الفصل الدراسي ليتم عرض قوائم الطلاب فوراً</p></div>`;
-            }
-        }
-
-        const toggleBtn = document.getElementById('toggleRankingBtn');
-        if (toggleBtn) {
-            toggleBtn.addEventListener('click', toggleRankingPanel);
-        }
-
-        setTimeout(() => document.getElementById('pinField').focus(), 300);
-
-        setInterval(() => {
-            if (navigator.onLine) {
-                checkPendingSync();
-            }
-        }, 30000);
-
-        console.log('🚀 نظام المدارس الذكي جاهز');
-        console.log('📊 عدد الطلاب المحملين:', allStudentsRaw.length);
-        console.log('📊 عدد الغيابات المسجلة:', Object.keys(absenceMap).length);
+async function init() {
+    // ═══════════════════════════════════════════════════
+    // 1. عرض شاشة القفل فوراً (بدون انتظار أي شيء)
+    // ═══════════════════════════════════════════════════
+    const lockScreen = document.getElementById('lockScreen');
+    if (lockScreen) {
+        lockScreen.style.display = 'flex';
+        lockScreen.style.opacity = '1';
+        lockScreen.style.pointerEvents = 'auto';
+        console.log('🔒 شاشة القفل ظهرت');
     }
-    
-    init();
+
+    // ═══════════════════════════════════════════════════
+    // 2. تحميل البيانات المحلية (تعمل بدون نت)
+    // ═══════════════════════════════════════════════════
+    loadAbsenceFromStorage();
+
+    const localRaw = localStorage.getItem("cached_all_students");
+    if (localRaw) {
+        try {
+            allStudentsRaw = JSON.parse(localRaw);
+            console.log('✅ تم تحميل البيانات من الذاكرة المحلية');
+            populateGradesDropdown();
+        } catch (e) {
+            console.warn('⚠️ فشل تحميل البيانات المحلية', e);
+        }
+    }
+
+    // ═══════════════════════════════════════════════════
+    // 3. تحديث التاريخ في شاشة القفل
+    // ═══════════════════════════════════════════════════
+    updateLockScreenDates();
+
+    // ═══════════════════════════════════════════════════
+    // 4. تحميل إعدادات الوضع (ليلي/نهاري)
+    // ═══════════════════════════════════════════════════
+    loadThemePreference();
+
+    // ═══════════════════════════════════════════════════
+    // 5. تحديث واجهة الشبكة
+    // ═══════════════════════════════════════════════════
+    updateNetworkUI();
+
+    // ═══════════════════════════════════════════════════
+    // 6. تحديث التاريخ في الواجهة الرئيسية
+    // ═══════════════════════════════════════════════════
+    const d = new Date();
+    const dateEl = document.getElementById('todayDate');
+    if (dateEl) {
+        dateEl.innerText = d.toLocaleDateString('ar-EG', { day: 'numeric', month: 'short' });
+    }
+
+    // ═══════════════════════════════════════════════════
+    // 7. محاولة تحميل البيانات من السحابة (في الخلفية)
+    //    لا تمنع ظهور شاشة القفل إذا فشلت
+    // ═══════════════════════════════════════════════════
+    try {
+        await loadClassNames();
+    } catch (e) {
+        console.warn('⚠️ فشل تحميل البيانات من السحابة، استخدام المحلي', e);
+    }
+
+    // ═══════════════════════════════════════════════════
+    // 8. تحميل الطلاب (من المحلي أو السحابة)
+    // ═══════════════════════════════════════════════════
+    const selectedGrade = document.getElementById('classSelect').value;
+    if (selectedGrade) {
+        await loadStudents();
+    } else {
+        const container = document.getElementById('studentsContainer');
+        if (allStudentsRaw && allStudentsRaw.length > 0) {
+            const firstGrade = allStudentsRaw[0]?.grade;
+            if (firstGrade) {
+                document.getElementById('classSelect').value = firstGrade;
+                await loadStudents();
+            }
+        } else if (container) {
+            container.innerHTML = `<div class="empty-state">
+                <i class="fa-solid fa-folder-open"></i>
+                <p>📴 وضع الأوفلاين - يرجى تحديد الفصل الدراسي</p>
+                <p style="font-size:0.8rem;color:#94a3b8;">البيانات المحلية متاحة عند الاتصال بالإنترنت أولاً</p>
+            </div>`;
+        }
+    }
+
+    // ═══════════════════════════════════════════════════
+    // 9. إعدادات إضافية
+    // ═══════════════════════════════════════════════════
+    const toggleBtn = document.getElementById('toggleRankingBtn');
+    if (toggleBtn) {
+        toggleBtn.addEventListener('click', toggleRankingPanel);
+    }
+
+    // التركيز على حقل PIN بعد 300ms
+    setTimeout(() => {
+        const pinField = document.getElementById('pinField');
+        if (pinField) pinField.focus();
+    }, 300);
+
+    // التحقق من المزامنة المعلقة كل 30 ثانية
+    setInterval(() => {
+        if (navigator.onLine) {
+            checkPendingSync();
+        }
+    }, 30000);
+
+    console.log('🚀 نظام المدارس الذكي جاهز');
+    console.log('📊 عدد الطلاب المحملين:', allStudentsRaw?.length || 0);
+    console.log('📊 عدد الغيابات المسجلة:', Object.keys(absenceMap).length);
+}
+
+init();
 </script>
 
 <script>
@@ -5501,7 +5561,7 @@ function openPrintWindow(content, fileName = 'طباعة') {
         <head>
             <meta charset="UTF-8">
             <title>${fileName}</title>
-            <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+          
             <!-- ===== أيقونات تعمل بدون إنترنت 100% ===== -->
 <style>
 /* ============================================================ */
