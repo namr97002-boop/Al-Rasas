@@ -16359,6 +16359,73 @@ console.log('🧠 التحليل الذكي الشامل جاهز!');
     console.log('📱 زر التثبيت في شريط الأدوات جاهز ✅');
 
 })();
+// ============================================================
+// 🔐 حل نهائي: شاشة الدخول بدون نت - نسخة خفيفة
+// ============================================================
+(function() {
+    'use strict';
+
+    // إخفاء كل شيء عدا شاشة الدخول
+    function forceLockScreen() {
+        // إخفاء شاشة الترخيص
+        var license = document.getElementById('licenseOverlay');
+        if (license) {
+            license.style.display = 'none';
+            license.style.opacity = '0';
+            license.style.pointerEvents = 'none';
+            license.style.visibility = 'hidden';
+        }
+
+        // إظهار شاشة الدخول
+        var lockScreen = document.getElementById('lockScreen');
+        if (lockScreen) {
+            lockScreen.style.display = 'flex';
+            lockScreen.style.opacity = '1';
+            lockScreen.style.pointerEvents = 'auto';
+            lockScreen.style.visibility = 'visible';
+            lockScreen.style.position = 'fixed';
+            lockScreen.style.top = '0';
+            lockScreen.style.left = '0';
+            lockScreen.style.width = '100%';
+            lockScreen.style.height = '100%';
+            lockScreen.style.zIndex = '99999';
+            lockScreen.style.backgroundColor = '#0f172a';
+            lockScreen.style.alignItems = 'center';
+            lockScreen.style.justifyContent = 'center';
+        }
+
+        // التركيز على حقل PIN
+        var pinField = document.getElementById('pinField');
+        if (pinField) {
+            pinField.value = '';
+            setTimeout(function() { pinField.focus(); }, 200);
+        }
+    }
+
+    // تنفيذ فوراً وبشكل متكرر
+    forceLockScreen();
+    setTimeout(forceLockScreen, 100);
+    setTimeout(forceLockScreen, 500);
+    setInterval(forceLockScreen, 2000);
+})();
+</script>
+<script>
+// ===== إجبار المتصفح على تحديث Service Worker =====
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then(function(registrations) {
+        for (let registration of registrations) {
+            registration.update();
+        }
+    });
+    
+    navigator.serviceWorker.register('/sw.js')
+        .then(function(reg) {
+            console.log('✅ Service Worker محدث');
+        })
+        .catch(function(err) {
+            console.log('❌ فشل التحديث:', err);
+        });
+}
 </script>
 </body>
 </html>
