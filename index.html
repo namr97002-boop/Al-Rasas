@@ -16119,5 +16119,215 @@ console.log('🧠 التحليل الذكي الشامل جاهز!');
 })();
 
 </script>
+<!-- ============================================================ -->
+<!-- 📱 زر التثبيت الذكي - يعمل على جميع أجهزة Android -->
+<!-- ============================================================ -->
+
+<style>
+#installContainer {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999999;
+    width: 90%;
+    max-width: 400px;
+    display: none;
+    animation: slideUp 0.5s ease;
+}
+#installContainer.show { display: block !important; }
+@keyframes slideUp {
+    from { transform: translateX(-50%) translateY(100px); opacity: 0; }
+    to { transform: translateX(-50%) translateY(0); opacity: 1; }
+}
+#installBtn {
+    width: 100%;
+    background: linear-gradient(135deg, #caa14a, #b38728);
+    border: none;
+    padding: 16px 24px;
+    border-radius: 16px;
+    font-weight: 800;
+    font-size: 1rem;
+    color: #0f172a;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    box-shadow: 0 8px 30px rgba(202, 161, 74, 0.5);
+    font-family: 'Tajawal', sans-serif;
+    transition: all 0.3s ease;
+}
+#installBtn:hover { transform: scale(1.03); box-shadow: 0 12px 40px rgba(202, 161, 74, 0.7); }
+#installBtn .close-btn {
+    background: rgba(0,0,0,0.2);
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    margin-right: 5px;
+}
+#installBtn .close-btn:hover { background: rgba(0,0,0,0.4); transform: rotate(90deg); }
+@media (max-width: 480px) {
+    #installBtn { padding: 14px 18px; font-size: 0.85rem; border-radius: 14px; }
+}
+</style>
+
+<div id="installContainer">
+    <button id="installBtn">
+        <span>📱</span>
+        <span style="flex:1;text-align:right;">📥 تثبيت التطبيق</span>
+        <span class="close-btn" onclick="closeInstallBanner()">✕</span>
+    </button>
+</div>
+
+<script>
+(function() {
+    let deferredPrompt = null;
+    const container = document.getElementById('installContainer');
+    const btn = document.getElementById('installBtn');
+
+    function showInstallBanner() {
+        if (container) container.classList.add('show');
+    }
+
+    window.closeInstallBanner = function() {
+        if (container) container.classList.remove('show');
+        localStorage.setItem('installBannerClosed', 'true');
+    };
+
+    function tryInstall() {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then(function(result) {
+                if (result.outcome === 'accepted') {
+                    showToast('✅ تم تثبيت التطبيق بنجاح! 🎉');
+                    closeInstallBanner();
+                } else {
+                    showToast('❌ تم إلغاء التثبيت', true);
+                }
+                deferredPrompt = null;
+            });
+        } else {
+            showManualInstallGuide();
+        }
+    }
+
+    function showManualInstallGuide() {
+        const overlay = document.createElement('div');
+        overlay.id = 'manualInstallGuide';
+        overlay.style.cssText = `
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.88); backdrop-filter: blur(15px);
+            z-index: 9999999; display: flex; align-items: center; justify-content: center;
+            padding: 20px; font-family: 'Tajawal', sans-serif; animation: fadeIn 0.4s ease;
+        `;
+        overlay.innerHTML = `
+            <div style="background:linear-gradient(145deg,#1e293b,#0f172a);border:3px solid #caa14a;border-radius:28px;padding:30px 25px;max-width:420px;width:100%;color:#f8fafc;text-align:center;box-shadow:0 40px 100px rgba(0,0,0,0.8);">
+                <div style="font-size:3.5rem;margin-bottom:10px;">📱</div>
+                <h2 style="color:#caa14a;font-size:1.4rem;margin:0 0 5px 0;font-weight:800;">تثبيت التطبيق</h2>
+                <p style="color:#94a3b8;font-size:0.85rem;margin-bottom:20px;">أضف التطبيق إلى شاشة هاتفك الرئيسية</p>
+                <div style="background:rgba(255,255,255,0.05);border-radius:16px;padding:16px 20px;margin-bottom:20px;border:1px solid rgba(255,255,255,0.06);text-align:right;">
+                    <p style="margin:0;color:#e2e8f0;font-size:0.95rem;line-height:2.5;text-align:center;">
+                        <span style="color:#f59e0b;">📍</span> 
+                        <strong style="color:#3b82f6;">طريقة التثبيت:</strong><br>
+                        <span style="color:#caa14a;">1.</span> اضغط على <strong style="color:#f59e0b;">⋮</strong> (النقاط الثلاث)<br>
+                        <span style="color:#caa14a;">2.</span> اختر <strong style="color:#10b981;">"تثبيت التطبيق"</strong><br>
+                        <span style="color:#caa14a;">3.</span> اضغط على <strong style="color:#3b82f6;">"تثبيت"</strong> ✅
+                    </p>
+                </div>
+                <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+                    <button onclick="tryInstallAppDirect()" style="background:linear-gradient(135deg,#caa14a,#b38728);border:none;padding:14px 32px;border-radius:14px;font-weight:800;font-size:1rem;color:#0f172a;cursor:pointer;font-family:'Tajawal',sans-serif;box-shadow:0 4px 20px rgba(202,161,74,0.4);transition:all 0.3s ease;display:flex;align-items:center;gap:10px;">
+                        <i class="fa-solid fa-download"></i> تثبيت الآن
+                    </button>
+                    <button onclick="document.getElementById('manualInstallGuide').remove()" style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);padding:14px 24px;border-radius:14px;font-weight:bold;color:#94a3b8;cursor:pointer;font-family:'Tajawal',sans-serif;font-size:0.9rem;">
+                        ✕ إغلاق
+                    </button>
+                </div>
+                <div style="margin-top:15px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.05);font-size:0.7rem;color:#64748b;">
+                    <i class="fa-solid fa-info-circle"></i> بعد التثبيت، سيظهر التطبيق على شاشة هاتفك الرئيسية
+                </div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+        overlay.addEventListener('click', function(e) { if (e.target === overlay) this.remove(); });
+    }
+
+    window.tryInstallAppDirect = function() {
+        const guide = document.getElementById('manualInstallGuide');
+        if (guide) guide.remove();
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then(function(result) {
+                if (result.outcome === 'accepted') {
+                    showToast('✅ تم تثبيت التطبيق بنجاح! 🎉');
+                    closeInstallBanner();
+                } else {
+                    showToast('❌ تم إلغاء التثبيت', true);
+                }
+                deferredPrompt = null;
+            });
+        } else {
+            showToast('📱 اتبع التعليمات لإضافة التطبيق إلى الشاشة الرئيسية', false);
+            setTimeout(showManualInstallGuide, 500);
+        }
+    };
+
+    window.addEventListener('beforeinstallprompt', function(e) {
+        e.preventDefault();
+        deferredPrompt = e;
+        showInstallBanner();
+    });
+
+    window.addEventListener('appinstalled', function() {
+        showToast('🎉 شكراً لتثبيت تطبيق نظام المدارس الذكي!');
+        closeInstallBanner();
+        deferredPrompt = null;
+    });
+
+    if (btn) {
+        btn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (deferredPrompt) {
+                tryInstall();
+            } else {
+                showManualInstallGuide();
+            }
+        });
+    }
+
+    setTimeout(function() {
+        const isClosed = localStorage.getItem('installBannerClosed') === 'true';
+        if (!isClosed) showInstallBanner();
+    }, 3000);
+
+    function showToast(msg, isError) {
+        const old = document.querySelector('.pwa-toast');
+        if (old) old.remove();
+        const toast = document.createElement('div');
+        toast.className = 'pwa-toast';
+        toast.style.cssText = `
+            position: fixed; bottom: 100px; left: 50%; transform: translateX(-50%);
+            background: ${isError ? '#ef4444' : '#10b981'}; color: #0f172a;
+            padding: 12px 24px; border-radius: 12px; font-weight: bold;
+            z-index: 99999999; font-family: 'Tajawal', sans-serif; font-size: 0.9rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3); animation: fadeIn 0.3s ease;
+            max-width: 90%; text-align: center;
+        `;
+        toast.textContent = msg;
+        document.body.appendChild(toast);
+        setTimeout(function() { toast.remove(); }, 4000);
+    }
+
+    console.log('📱 نظام التثبيت الذكي جاهز!');
+})();
+</script>
 </body>
 </html>
