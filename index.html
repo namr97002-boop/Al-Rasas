@@ -16190,6 +16190,13 @@ console.log('🧠 التحليل الذكي الشامل جاهز!');
 })();
 
 </script>
-
+<!-- أضف هذا في index.html -->
+<script>
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js', { scope: '/' })
+        .then(reg => console.log('✅ SW registered'))
+        .catch(err => console.log('❌ SW failed', err));
+}
+</script>
 </body>
 </html>
