@@ -110,7 +110,6 @@
 .fa-admin:before { content: "👑"; }
 .fa-principal:before { content: "🧑‍🏫"; }
 </style>
-    
     <style>
         :root {
             --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
@@ -1287,35 +1286,7 @@ body::after {
 }
 
 /* ===== 4. شريط تقدم ذهبي متحرك ===== */
-.gold-progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: rgba(255, 255, 255, 0.05);
-    z-index: 99999;
-}
 
-.gold-progress-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-    background-size: 200% 100%;
-    animation: progressMove 3s ease-in-out infinite, shimmerMove 2s linear infinite;
-    border-radius: 0 2px 2px 0;
-}
-
-@keyframes progressMove {
-    0% { width: 0%; }
-    50% { width: 75%; }
-    100% { width: 0%; }
-}
-
-@keyframes shimmerMove {
-    0% { background-position: 0% 0%; }
-    100% { background-position: 200% 0%; }
-}
 
 /* ===== 5. نص متلألئ ذهبي ===== */
 .glow-title {
@@ -1653,125 +1624,7 @@ body::after {
     z-index: 0;
 }
 
-.lock-bg-animation .orb {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    animation: orbCinema 15s ease-in-out infinite alternate;
-}
-
-.lock-bg-animation .orb:nth-child(1) {
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(202, 161, 74, 0.15), rgba(202, 161, 74, 0.02));
-    top: -150px;
-    right: -150px;
-    animation-delay: 0s;
-    animation-duration: 20s;
-}
-
-.lock-bg-animation .orb:nth-child(2) {
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(59, 130, 246, 0.12), rgba(59, 130, 246, 0.01));
-    bottom: -100px;
-    left: -100px;
-    animation-delay: -5s;
-    animation-duration: 18s;
-}
-
-.lock-bg-animation .orb:nth-child(3) {
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.10), rgba(139, 92, 246, 0.01));
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    animation-delay: -10s;
-    animation-duration: 22s;
-}
-
-.lock-bg-animation .orb:nth-child(4) {
-    width: 200px;
-    height: 200px;
-    background: radial-gradient(circle, rgba(245, 158, 11, 0.12), rgba(245, 158, 11, 0.01));
-    top: 20%;
-    right: 20%;
-    animation-delay: -3s;
-    animation-duration: 16s;
-}
-
-.lock-bg-animation .orb:nth-child(5) {
-    width: 250px;
-    height: 250px;
-    background: radial-gradient(circle, rgba(16, 185, 129, 0.08), rgba(16, 185, 129, 0.01));
-    bottom: 20%;
-    left: 20%;
-    animation-delay: -7s;
-    animation-duration: 19s;
-}
-
-@keyframes orbCinema {
-    0% { transform: translate(0, 0) scale(1) rotate(0deg); }
-    25% { transform: translate(40px, -50px) scale(1.15) rotate(5deg); }
-    50% { transform: translate(-30px, 40px) scale(0.85) rotate(-3deg); }
-    75% { transform: translate(20px, -20px) scale(1.1) rotate(4deg); }
-    100% { transform: translate(-10px, 10px) scale(0.95) rotate(-2deg); }
-}
-
-/* ===== جسيمات ذهبية متطايرة ===== */
-.lock-particles {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: 0;
-    overflow: hidden;
-}
-
-.lock-particle {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    background: radial-gradient(circle, #caa14a, transparent);
-    border-radius: 50%;
-    animation: particleFloat linear infinite;
-    opacity: 0;
-}
-
-.lock-particle:nth-child(1) { left: 10%; animation-duration: 12s; animation-delay: 0s; }
-.lock-particle:nth-child(2) { left: 20%; animation-duration: 15s; animation-delay: 2s; }
-.lock-particle:nth-child(3) { left: 30%; animation-duration: 10s; animation-delay: 4s; }
-.lock-particle:nth-child(4) { left: 40%; animation-duration: 18s; animation-delay: 1s; }
-.lock-particle:nth-child(5) { left: 50%; animation-duration: 14s; animation-delay: 3s; }
-.lock-particle:nth-child(6) { left: 60%; animation-duration: 11s; animation-delay: 5s; }
-.lock-particle:nth-child(7) { left: 70%; animation-duration: 16s; animation-delay: 2s; }
-.lock-particle:nth-child(8) { left: 80%; animation-duration: 13s; animation-delay: 4s; }
-.lock-particle:nth-child(9) { left: 90%; animation-duration: 17s; animation-delay: 1s; }
-.lock-particle:nth-child(10) { left: 15%; animation-duration: 19s; animation-delay: 3s; }
-.lock-particle:nth-child(11) { left: 45%; animation-duration: 12s; animation-delay: 5s; }
-.lock-particle:nth-child(12) { left: 75%; animation-duration: 14s; animation-delay: 2s; }
-.lock-particle:nth-child(13) { left: 55%; animation-duration: 16s; animation-delay: 4s; }
-.lock-particle:nth-child(14) { left: 85%; animation-duration: 11s; animation-delay: 1s; }
-.lock-particle:nth-child(15) { left: 25%; animation-duration: 13s; animation-delay: 3s; }
-
-@keyframes particleFloat {
-    0% { 
-        transform: translateY(100vh) scale(0) rotate(0deg);
-        opacity: 0;
-    }
-    10% { opacity: 0.8; }
-    50% { opacity: 1; }
-    90% { opacity: 0.8; }
-    100% { 
-        transform: translateY(-10vh) scale(1.5) rotate(720deg);
-        opacity: 0;
-    }
-}
-
-/* ============================================================ */
+============================================================ */
 /* 🏆 الإطار الذهبي المتساوي - يعمل مع RTL                      */
 /* ============================================================ */
 
@@ -1827,64 +1680,7 @@ body::after {
     }
 }
 
-/* ===== التوهج الخارجي - طبقة ثانية ===== */
-.lock-card::before {
-    content: '';
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    border-radius: 38px;
-    background: radial-gradient(circle at center, rgba(202, 161, 74, 0.08), transparent 70%);
-    filter: blur(30px);
-    z-index: -1;
-    animation: outerGlow 4s ease-in-out infinite alternate;
-    pointer-events: none;
-}
 
-/* ===== توهج إضافي من الخلف ===== */
-.lock-card::after {
-    content: '';
-    position: absolute;
-    top: -6px;
-    left: -6px;
-    right: -6px;
-    bottom: -6px;
-    border-radius: 36px;
-    background: linear-gradient(135deg, 
-        rgba(202, 161, 74, 0.06),
-        rgba(202, 161, 74, 0.02),
-        rgba(202, 161, 74, 0.06)
-    );
-    filter: blur(15px);
-    z-index: -2;
-    animation: outerGlow2 5s ease-in-out infinite alternate;
-    pointer-events: none;
-}
-
-@keyframes outerGlow {
-    0% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 0.8; transform: scale(1.03); }
-    100% { opacity: 0.3; transform: scale(1); }
-}
-
-@keyframes outerGlow2 {
-    0% { opacity: 0.2; }
-    50% { opacity: 0.6; }
-    100% { opacity: 0.2; }
-}
-
-@keyframes lockCardIn {
-    from { 
-        transform: translateY(60px) scale(0.92) rotateX(5deg);
-        opacity: 0; 
-    }
-    to { 
-        transform: translateY(0) scale(1) rotateX(0deg);
-        opacity: 1; 
-    }
-}
 
 /* ===== الأيقونة ===== */
 .lock-icon-container {
@@ -2445,14 +2241,229 @@ body::after {
 .lock-card {
     transform: translateX(30px) !important;
 }
+/* ============================================================ */
+/* 🎯 تحريك شاشة الدخول إلى اليمين 50px                         */
+/* ============================================================ */
+
+.lock-card {
+    transform: translateX(50px) !important;
+}
 
 @media (max-width: 480px) {
     .lock-card {
-        transform: translateX(15px) !important;
+        transform: translateX(25px) !important;
     }
 }
 
+/* ===== إزالة التلالا من النصوص ===== */
+.school-name-badge span,
+.lock-card h2,
+.lock-school-name span,
+.header-modern h1,
+.glow-title,
+.gold-glow {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    background-clip: unset !important;
+    animation: none !important;
+    color: #caa14a !important; /* لون ذهبي ثابت */
+}
+
+/* إزالة الحركة المتلألئة */
+@keyframes shimmerText {
+    /* يمكنك حذف هذا بالكامل أو تركه */
+}
+
+/* إزالة التلالا من اسم المدرسة في شاشة القفل */
+.lock-school-name span {
+    color: #caa14a !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    animation: none !important;
+}
+
+/* إزالة التلالا من الـ H1 */
+.header-modern h1 {
+    color: #caa14a !important;
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+}
+/* ===== إزالة تلالا القفل والإصدار الذهبي ===== */
+
+/* 1. إزالة توهج الأيقونة */
+.lock-icon-container {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2) !important;
+    animation: none !important;
+    background: rgba(202, 161, 74, 0.05) !important;
+    border-color: rgba(202, 161, 74, 0.1) !important;
+}
+
+/* 2. إزالة الإطار الدوار */
+.lock-icon-container::after {
+    display: none !important;
+}
+
+/* 3. إزالة حركة القفل */
+@keyframes lockPulse {
+    /* يمكنك حذف هذا أو تركه */
+}
+
+@keyframes spinBorder {
+    /* يمكنك حذف هذا أو تركه */
+}
+
+/* 4. إزالة تلالا كلمة "الإصدار الذهبي" */
+.lock-card .sub-title {
+    color: #94a3b8 !important; /* لون ثابت */
+    opacity: 1 !important;
+    letter-spacing: 2px !important;
+    text-shadow: none !important;
+}
+
+/* 5. إزالة تلالا عنوان "نظام المدارس الذكي" */
+.lock-card h2 {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    color: #caa14a !important;
+    animation: none !important;
+    text-shadow: 0 0 10px rgba(202, 161, 74, 0.1) !important;
+}
+
+/* 6. إزالة تلالا اسم المدرسة */
+.lock-school-name span {
+    background: none !important;
+    -webkit-background-clip: unset !important;
+    -webkit-text-fill-color: unset !important;
+    color: #caa14a !important;
+    animation: none !important;
+}
+
+/* 7. إزالة تلالا الشريط الفاصل */
+.lock-divider {
+    box-shadow: none !important;
+    animation: none !important;
+}
+/* ===== خلفية ثابتة بدلاً من المتوهجة ===== */
+:root {
+    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+}
+
+[data-theme="light"] {
+    --bg-gradient: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+body {
+    background: var(--bg-gradient) !important;
+    background-attachment: fixed !important;
+}
+
+/* إزالة كل الوهج */
+body::before,
+body::after {
+    display: none !important;
+}
 /* ============================================================ */
+/* 🎬 شاشة الدخول - الإطار الذهبي مع إزاحة 50px                */
+/* ============================================================ */
+
+.lock-screen-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    transition: all 0.5s ease-out;
+}
+
+.lock-card {
+    background: var(--lock-card-bg);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    border-radius: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 35px 25px;
+    width: 100%;
+    max-width: 420px;
+    text-align: center;
+    box-shadow: 0 40px 80px var(--shadow-color), inset 0 1px 0 rgba(255,255,255,0.1);
+    animation: lockCardIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: translateX(50px);
+}
+
+@media (max-width: 480px) {
+    .lock-card {
+        transform: translateX(25px);
+        padding: 30px 20px 25px;
+        border-radius: 24px;
+    }
+}
+/* ============================================================ */
+/* 🎯 منع سحب شاشة القفل فقط - بدون تأثير على الشاشة الرئيسية  */
+/* ============================================================ */
+
+/* 1. منع التمرير فقط عندما تكون شاشة القفل ظاهرة */
+.lock-screen-overlay.active {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+    touch-action: none !important;
+}
+
+/* 2. تثبيت شاشة القفل نفسها */
+.lock-screen-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%) !important;
+    z-index: 99999 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 20px !important;
+    overflow: hidden !important;
+    touch-action: none !important;
+    transform: none !important;
+    animation: none !important;
+    transition: none !important;
+}
+
+/* 3. البطاقة منزاحة 50px */
+.lock-card {
+    transform: translateX(50px) !important;
+    position: relative !important;
+    animation: none !important;
+    transition: none !important;
+    touch-action: none !important;
+}
+
+/* 4. الجوال */
+@media (max-width: 480px) {
+    .lock-card {
+        transform: translateX(25px) !important;
+    }
+}
+
+/* 5. السماح بالتمرير في الشاشة الرئيسية */
+body {
+    overflow: auto !important;
+    height: auto !important;
+    position: relative !important;
+}
     </style>
 </head>
 <body>
@@ -2640,203 +2651,10 @@ body::after {
 </style>
 
 <!-- ===== شاشة الترخيص ===== -->
-<div id="licenseOverlay">
-    <div class="license-box">
-        <div class="icon"><i class="fa-solid fa-shield-halved"></i></div>
-        <h1>🔐 نظام الترخيص</h1>
-        <p class="sub">أدخل رمز الترخيص للوصول إلى النظام</p>
-
-        <div class="field">
-            <label><i class="fa-solid fa-key"></i> رمز الترخيص</label>
-            <input type="text" id="licenseCode" placeholder="أدخل رمز الترخيص" value="" autocomplete="off">
-        </div>
-
-        <div class="field">
-            <label><i class="fa-solid fa-microchip"></i> بصمة الجهاز</label>
-            <input type="text" id="deviceFingerprint" readonly placeholder="جاري التوليد...">
-        </div>
-
-        <button class="btn-license" id="verifyBtn" onclick="verifyLicense()">
-            <i class="fa-solid fa-check-circle"></i> ✅ تفعيل الترخيص
-        </button>
-
-        <div class="license-status" id="licenseStatus"></div>
-        <div class="license-offline" id="offlineStatus">📡 جاري التحقق من الأوفلاين...</div>
-        <div class="license-footer">🔐 نظام الترخيص v3.0</div>
-    </div>
-</div>
 
 <script>
 // ============================================================
-// 🔐 نظام الترخيص - يظهر مرة واحدة فقط كل 30 يوم
-// ============================================================
 
-const LICENSE_API = "https://script.google.com/macros/s/AKfycbwnNwDHb8FNHC0Bs0CNlvQLchqFBCkjkYBFibT8KUWIwt6tgLHCKWnEJu0IGgp--XsX/exec";
-
-// --- توليد بصمة الجهاز ---
-async function generateDeviceFingerprint() {
-    const parts = [
-        navigator.userAgent || '',
-        navigator.platform || '',
-        navigator.language || '',
-        navigator.languages?.join(',') || '',
-        new Date().getTimezoneOffset() || '',
-        screen.width || '',
-        screen.height || '',
-        screen.colorDepth || '',
-        window.devicePixelRatio || '',
-        navigator.hardwareConcurrency || '',
-        navigator.maxTouchPoints || '',
-        navigator.vendor || ''
-    ];
-    const canvas = document.createElement('canvas');
-    canvas.width = 256;
-    canvas.height = 64;
-    const ctx = canvas.getContext('2d');
-    ctx.textBaseline = 'top';
-    ctx.font = '14px Arial';
-    ctx.fillStyle = '#f60';
-    ctx.fillRect(0, 0, 50, 50);
-    ctx.fillStyle = '#069';
-    ctx.fillText('Fingerprint', 2, 15);
-    ctx.fillStyle = 'rgba(102, 204, 0, 0.7)';
-    ctx.fillText('Device', 4, 35);
-    const data = parts.join('|') + '|' + canvas.toDataURL();
-    const hash = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(data));
-    return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
-}
-
-// --- بيانات الأوفلاين ---
-function getOfflineData() {
-    try { 
-        const raw = localStorage.getItem('license_data'); 
-        return raw ? JSON.parse(raw) : null; 
-    } catch { return null; }
-}
-function saveOfflineData(data) { 
-    localStorage.setItem('license_data', JSON.stringify(data)); 
-}
-function clearOfflineData() {
-    localStorage.removeItem('license_data');
-}
-
-// --- التحقق من صلاحية الأوفلاين ---
-function isOfflineValid() {
-    const data = getOfflineData();
-    if (!data) return false;
-    const expiry = new Date(data.expiry);
-    const now = new Date();
-    return expiry > now;
-}
-
-// --- التحقق من الترخيص ---
-async function verifyLicense() {
-    const code = document.getElementById('licenseCode').value.trim();
-    const device = document.getElementById('deviceFingerprint').value;
-    const statusEl = document.getElementById('licenseStatus');
-    const btn = document.getElementById('verifyBtn');
-
-    if (!code) { showLicenseStatus('⚠️ أدخل رمز الترخيص', 'warning'); return; }
-    if (!device || device.length !== 64) { showLicenseStatus('⚠️ بصمة الجهاز غير صالحة', 'warning'); return; }
-
-    btn.disabled = true;
-    btn.innerHTML = '<span class="loading"></span> جاري التحقق...';
-    showLicenseStatus('⏳ جاري الاتصال...', 'info');
-
-    try {
-        const offline = getOfflineData();
-        let url = `${LICENSE_API}?action=verify&code=${encodeURIComponent(code)}&device=${encodeURIComponent(device)}`;
-        if (offline?.token) url += `&offlineToken=${encodeURIComponent(offline.token)}`;
-
-        const res = await fetch(url);
-        const data = await res.json();
-
-        if (data.success) {
-            showLicenseStatus('✅ ' + data.message, 'success');
-            
-            // حفظ بيانات الأوفلاين (30 يوم)
-            const token = data.offlineToken || data.data?.offlineToken;
-            const days = data.offlineDays || data.data?.offlineDays || 30;
-            const expiry = new Date();
-            expiry.setDate(expiry.getDate() + days);
-            
-            saveOfflineData({ 
-                code, 
-                device, 
-                token: token || '',
-                expiry: expiry.toISOString().split('T')[0],
-                merchant: data.trader || data.data?.trader || 'غير محدد'
-            });
-
-            // ✅ إخفاء الترخيص نهائياً (حتى انتهاء الأوفلاين)
-            document.getElementById('licenseOverlay').classList.add('hidden');
-            
-            // تفعيل نظام الغياب
-            if (typeof onLicenseSuccess === 'function') onLicenseSuccess();
-            
-        } else {
-            showLicenseStatus('❌ ' + data.message, 'error');
-        }
-    } catch (e) {
-        // محاولة الأوفلاين
-        const offline = getOfflineData();
-        if (offline && offline.code === code && isOfflineValid()) {
-            showLicenseStatus('✅ تم التحقق من الأوفلاين', 'success');
-            document.getElementById('licenseOverlay').classList.add('hidden');
-            if (typeof onLicenseSuccess === 'function') onLicenseSuccess();
-            return;
-        }
-        showLicenseStatus('❌ فشل الاتصال ولا توجد صلاحية أوفلاين صالحة', 'error');
-    }
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fa-solid fa-check-circle"></i> ✅ تفعيل الترخيص';
-}
-
-function showLicenseStatus(msg, type) {
-    const el = document.getElementById('licenseStatus');
-    el.className = 'license-status show ' + type;
-    el.textContent = msg;
-}
-
-function updateOfflineStatusUI() {
-    const data = getOfflineData();
-    const el = document.getElementById('offlineStatus');
-    if (!data) { 
-        el.innerHTML = '⚠️ وضع الأوفلاين غير مفعل - أدخل رمز الترخيص';
-        return; 
-    }
-    const days = Math.max(0, Math.ceil((new Date(data.expiry) - new Date()) / (1000*60*60*24)));
-    if (days > 0) {
-        el.innerHTML = `✅ الأوفلاين نشط - متبقي ${days} يوم - مرحباً ${data.merchant || ''}`;
-    } else {
-        el.innerHTML = '⛔ انتهت صلاحية الأوفلاين - أدخل رمز الترخيص للتجديد';
-    }
-}
-
-// --- دالة لقفل النظام يدوياً (تظهر شاشة الترخيص مرة أخرى) ---
-function lockSystemManually() {
-    clearOfflineData();
-    document.getElementById('licenseOverlay').classList.remove('hidden');
-    document.getElementById('licenseCode').value = '';
-    document.getElementById('licenseStatus').className = 'license-status';
-    document.getElementById('licenseStatus').textContent = '';
-    showLicenseStatus('🔒 تم قفل النظام - أدخل الرمز لإعادة التفعيل', 'warning');
-}
-
-/// --- تشغيل عند التحميل ---
-document.addEventListener('DOMContentLoaded', async function() {
-    // إخفاء شاشة الترخيص مباشرة
-    document.getElementById('licenseOverlay').classList.add('hidden');
-    
-    // تفعيل نظام الغياب مباشرة
-    if (typeof onLicenseSuccess === 'function') onLicenseSuccess();
-    
-    // توليد بصمة الجهاز (اختياري)
-    try {
-        const fp = await generateDeviceFingerprint();
-        document.getElementById('deviceFingerprint').value = fp;
-    } catch(e) {}
-});
 
 // ============================================================
 // 🔓 دالة تُستدعى من نظام الغياب لإضافة زر القفل
@@ -2851,43 +2669,11 @@ document.addEventListener('DOMContentLoaded', async function() {
     <i class="fa-solid fa-download"></i> تثبيت التطبيق <i class="fa-solid fa-mobile-screen-button"></i>
 </button>
 
-<div class="gold-progress-bar">
-    <div class="gold-progress-fill"></div>
-</div>
-
 <div id="particlesContainer" class="bg-particles"></div>
 
 <div id="starsContainer" class="stars-container"></div>
 <div class="lock-screen-overlay" id="lockScreen">
     
-    <!-- الخلفية السينمائية -->
-    <div class="lock-bg-animation">
-        <div class="orb"></div>
-        <div class="orb"></div>
-        <div class="orb"></div>
-        <div class="orb"></div>
-        <div class="orb"></div>
-    </div>
-
-    <!-- الجسيمات المتطايرة -->
-    <div class="lock-particles">
-        <div class="lock-particle"></div>
-        <div class="lock-particle"></div>
-        <div class="lock-particle"></div>
-        <div class="lock-particle"></div>
-        <div class="lock-particle"></div>
-        <div class="lock-particle"></div>
-        <div class="lock-particle"></div>
-        <div class="lock-particle"></div>
-        <div class="lock-particle"></div>
-        <div class="lock-particle"></div>
-        <div class="lock-particle"></div>
-        <div class="lock-particle"></div>
-        <div class="lock-particle"></div>
-        <div class="lock-particle"></div>
-        <div class="lock-particle"></div>
-    </div>
-
     <!-- بطاقة الدخول مع الإطار الذهبي -->
     <div class="lock-card">
         
@@ -3158,7 +2944,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     </button>
 
     <!-- زر طباعة الشهادات -->
-    <button onclick="window.open('https://script.google.com/macros/s/AKfycbxJReG21mUyfCayN7LKDHRnr8NLU1xMUshLRPHqWISKf_C3YmAdpi4h-ssp0leRFKT5aA/exec', '_blank')"
+    <button onclick="window.open('https://script.google.com/macros/s/AKfycbxC_C2p-WsQOLV_Mt8PqIfHxcnpo4oDm_gUjM5TvvcSRx4UuNvphbQHzdcRDFDZ__t2bw/exec', '_blank')"
         style="background: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728); 
                border: none; 
                padding: 14px 10px; 
@@ -15297,7 +15083,7 @@ async function openComprehensiveAnalysis() {
             recommendations.push('👨‍🏫 أداء المعلمين ممتاز، نسبة الإنذارات ' + warningRate + '%');
             score += 20;
         } else if (warningRate < 30) {
-            recommendations.push('👨‍🏫 يوجد ' + totalTeacherWarnings + ' إنذار للمعلمين، يُنصح بمراجعة الأسباب ومعالجتها.');
+            recommendations.push('??‍🏫 يوجد ' + totalTeacherWarnings + ' إنذار للمعلمين، يُنصح بمراجعة الأسباب ومعالجتها.');
             score += 14;
         } else if (warningRate < 50) {
             recommendations.push('👨‍🏫 عدد الإنذارات مرتفع (' + totalTeacherWarnings + ')، يحتاج إلى تدخل إداري عاجل.');
@@ -15670,77 +15456,7 @@ window.closeComprehensiveAnalysis = closeComprehensiveAnalysis;
 window.printComprehensiveAnalysis = printComprehensiveAnalysis;
 
 console.log('🧠 التحليل الذكي الشامل جاهز!');
-// ============================================================
-// 🎨 التأثيرات الجمالية البسيطة
-// ============================================================
-
-(function() {
-    'use strict';
-
-    // تأثير تحويم بسيط للأزرار
-    function enhanceButtons() {
-        document.querySelectorAll('.btn-gold-glow, .btn-action, .lock-system-btn, [style*="display: grid;"] button').forEach(btn => {
-            btn.addEventListener('mouseenter', function() {
-                this.style.transition = 'all 0.3s ease';
-            });
-        });
-    }
-
-    // تشغيل بعد تحميل الصفحة
-    if (document.readyState === 'complete') {
-        enhanceButtons();
-    } else {
-        window.addEventListener('load', enhanceButtons);
-    }
-
-    console.log('✨ تم تفعيل التحسينات الجمالية');
-})();
-// ===== تأثير التموج (Ripple) على الأزرار =====
-(function() {
-    'use strict';
-
-    document.addEventListener('click', function(e) {
-        const btn = e.target.closest('.btn-gold-glow, .btn-action, .lock-system-btn');
-        if (!btn) return;
-
-        const ripple = document.createElement('span');
-        const rect = btn.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        
-        ripple.style.cssText = `
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            width: ${size}px;
-            height: ${size}px;
-            left: ${e.clientX - rect.left - size/2}px;
-            top: ${e.clientY - rect.top - size/2}px;
-            transform: scale(0);
-            animation: rippleAnim 0.6s ease-out forwards;
-            pointer-events: none;
-        `;
-        
-        // إضافة keyframes إذا لم تكن موجودة
-        if (!document.getElementById('rippleStyle')) {
-            const style = document.createElement('style');
-            style.id = 'rippleStyle';
-            style.textContent = `
-                @keyframes rippleAnim {
-                    to { transform: scale(4); opacity: 0; }
-                }
-            `;
-            document.head.appendChild(style);
-        }
-        
-        btn.style.position = 'relative';
-        btn.style.overflow = 'hidden';
-        btn.appendChild(ripple);
-        
-        setTimeout(() => ripple.remove(), 600);
-    });
-
-    console.log('✨ تم تفعيل التحسينات الجمالية الحقيقية');
-})();
+// 
 // ============================================================
 // 📊 نظام المحصلة v8.0 - مع جميع التحسينات + تصدير Excel
 // ============================================================
@@ -16403,85 +16119,5 @@ console.log('🧠 التحليل الذكي الشامل جاهز!');
 })();
 
 </script>
-<!-- ===== هنا ينتهي كل الكود الموجود ===== -->
-
-<!-- ✅✅✅ ضع الكود الجديد هنا ✅✅✅ -->
-<script>
-// ============================================================ //
-// 🎨 تشغيل التحسينات الجمالية                                //
-// ============================================================ //
-
-function createParticles() {
-    const container = document.getElementById('particlesContainer');
-    if (!container) return;
-    
-    const colors = ['rgba(202,161,74,0.1)', 'rgba(202,161,74,0.15)', 'rgba(202,161,74,0.08)'];
-    const sizes = [3, 5, 8, 12];
-    
-    for (let i = 0; i < 25; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        const size = sizes[Math.floor(Math.random() * sizes.length)];
-        particle.style.width = size + 'px';
-        particle.style.height = size + 'px';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-        particle.style.animationDuration = (15 + Math.random() * 20) + 's';
-        particle.style.animationDelay = (Math.random() * 15) + 's';
-        container.appendChild(particle);
-    }
-}
-
-function createStars() {
-    const container = document.getElementById('starsContainer');
-    if (!container) return;
-    
-    for (let i = 0; i < 80; i++) {
-        const star = document.createElement('div');
-        star.className = 'star';
-        const size = 1 + Math.random() * 3;
-        star.style.width = size + 'px';
-        star.style.height = size + 'px';
-        star.style.left = Math.random() * 100 + '%';
-        star.style.top = Math.random() * 100 + '%';
-        star.style.setProperty('--duration', (1 + Math.random() * 3) + 's');
-        star.style.animationDelay = (Math.random() * 3) + 's';
-        container.appendChild(star);
-    }
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-    createParticles();
-    createStars();
-});
-
-console.log('✨ تم تفعيل التحسينات الجمالية الذهبية');
-</script>
-    <!-- ... باقي أكواد صفحة الـ HTML ... -->
-
-    <script>
-        // ضع الكود هنا مباشرة
-        document.addEventListener('DOMContentLoaded', () => {
-            const container = document.createElement('div');
-            container.className = 'bg-particles';
-            document.body.appendChild(container);
-            
-            for (let i = 0; i < 15; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + 'vw';
-                particle.style.width = particle.style.height = (Math.random() * 4 + 2) + 'px';
-                particle.style.animationDuration = (Math.random() * 10 + 8) + 's';
-                particle.style.animationDelay = Math.random() * 5 + 's';
-                container.appendChild(particle);
-            }
-        });
-    </script>
-    <style>
-    * {
-        font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !important;
-    }
-</style>
-
 </body>
 </html>
