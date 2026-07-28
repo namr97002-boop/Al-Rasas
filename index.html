@@ -2390,14 +2390,40 @@ body::after {
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border-radius: 28px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 35px 25px;
+    /* ✅ الإطار الذهبي الثابت */
+    border: 3px solid #caa14a !important;
+    padding: 30px 20px;
     width: 100%;
-    max-width: 420px;
+    max-width: 360px !important;  /* 👈 تم التصغير من 420px إلى 360px */
     text-align: center;
-    box-shadow: 0 40px 80px var(--shadow-color), inset 0 1px 0 rgba(255,255,255,0.1);
+    box-shadow: 0 40px 80px var(--shadow-color), 0 0 30px rgba(202, 161, 74, 0.12) !important;
     animation: lockCardIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    transform: translateX(50px);
+    transform: translateX(50px) translateY(-30px);
+    margin: 0 auto !important;
+}
+
+/* للجوال */
+@media (max-width: 480px) {
+    .lock-card {
+        max-width: 290px !important;  /* 👈 أصغر للجوال */
+        padding: 20px 14px;
+        border-radius: 20px;
+        border: 2px solid #caa14a !important;
+        transform: translateX(25px) translateY(-20px) !important;
+    }
+    .lock-screen-overlay {
+        padding: 5px !important;
+        align-items: flex-start !important;
+        padding-top: 15px !important;
+    }
+}
+
+/* للشاشات المتوسطة */
+@media (min-width: 481px) and (max-width: 768px) {
+    .lock-card {
+        max-width: 320px !important;
+        transform: translateX(35px) translateY(-25px) !important;
+    }
 }
 
 @media (max-width: 480px) {
@@ -2684,9 +2710,27 @@ body {
     <div class="lock-card">
         
         <!-- الأيقونة -->
-        <div class="lock-icon-container" id="lockIconContainer">
-            <i class="fa-solid fa-shield-halved" id="lockShieldIcon"></i>
-        </div>
+   <!-- ===== أيقونة القفل المصغرة ===== -->
+<!-- ===== أيقونة القفل المصغرة ===== -->
+<div class="lock-icon-container" id="lockIconContainer" style="
+    width: 45px !important;
+    height: 45px !important;
+    margin: 0 auto 8px !important;
+    background: rgba(202, 161, 74, 0.08) !important;
+    border: 1px solid rgba(202, 161, 74, 0.12) !important;
+    border-radius: 50% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    color: #caa14a !important;
+    font-size: 1.2rem !important;
+    box-shadow: none !important;
+    position: relative !important;
+">
+    <i class="fa-solid fa-shield-halved" id="lockShieldIcon" style="
+        font-size: 1.2rem !important;
+    "></i>
+</div>
 
         <!-- العنوان -->
         <h2>نظام المدارس الذكي</h2>
@@ -2711,11 +2755,31 @@ body {
         </div>
 
         <!-- حقل PIN -->
-        <div class="pin-input-wrapper">
-            <input type="password" id="pinField" class="pin-input" 
-                   placeholder="••••••••" maxlength="8" 
-                   oninput="verifyPin()" autocomplete="off">
-        </div>
+    <div class="pin-input-wrapper" style="text-align: center; margin-bottom: 8px;">
+    <input type="password" id="pinField" class="pin-input" 
+           placeholder="••••" maxlength="8" 
+           oninput="verifyPin()" autocomplete="off"
+           style="
+               width: 130px !important;
+               height: 38px !important;
+               padding: 4px 12px !important;
+               border-radius: 30px !important;
+               border: 2px solid rgba(202, 161, 74, 0.2) !important;
+               background: rgba(15, 23, 42, 0.4) !important;
+               color: #f8fafc !important;
+               font-size: 1.1rem !important;
+               letter-spacing: 6px !important;
+               text-align: center !important;
+               outline: none !important;
+               font-weight: 700 !important;
+               display: inline-block !important;
+               backdrop-filter: blur(10px) !important;
+               transition: all 0.3s ease !important;
+               font-family: 'Tajawal', sans-serif !important;
+           "
+           onfocus="this.style.borderColor='#caa14a'; this.style.boxShadow='0 0 25px rgba(202,161,74,0.2)'; this.style.background='rgba(15,23,42,0.6)'"
+           onblur="this.style.borderColor='rgba(202,161,74,0.2)'; this.style.boxShadow='none'; this.style.background='rgba(15,23,42,0.4)'">
+</div>
 
         <!-- الأزرار -->
         <div class="lock-actions">
@@ -2737,15 +2801,64 @@ body {
             </div>
 
             <!-- أزرار الدخول السريع -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 4px;">
-                <button class="lock-btn lock-btn-teacher" onclick="openTeacherModeFromLock()">
-                    <i class="fa-solid fa-chalkboard-user"></i> دخول المعلمين
-                </button>
-                <button class="lock-btn lock-btn-admin" onclick="openAdminModeFromLock()">
-                    <i class="fa-solid fa-user-shield"></i> المشرفين
-                </button>
-            </div>
+  <!-- أزرار الدخول السريع - تصميم صغير وأنيق 🎯 -->
+<div style="display: flex; gap: 8px; justify-content: center; margin-top: 6px;">
+    
+    <!-- زر المعلمين -->
+    <button onclick="openTeacherModeFromLock()" 
+            style="
+                background: linear-gradient(135deg, #8b5cf6, #6d28d9) !important;
+                border: none !important;
+                padding: 6px 18px !important;
+                border-radius: 20px !important;
+                font-weight: 600 !important;
+                font-size: 0.7rem !important;
+                color: white !important;
+                cursor: pointer !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 5px !important;
+                box-shadow: 0 2px 10px rgba(139,92,246,0.25) !important;
+                transition: all 0.3s ease !important;
+                font-family: 'Tajawal', sans-serif !important;
+                white-space: nowrap !important;
+                height: 32px !important;
+                min-width: 90px !important;
+            "
+            onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 18px rgba(139,92,246,0.4)'"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 10px rgba(139,92,246,0.25)'">
+        <i class="fa-solid fa-chalkboard-user" style="font-size: 0.75rem;"></i> المعلمين
+    </button>
 
+    <!-- زر المشرفين -->
+    <button onclick="openAdminModeFromLock()" 
+            style="
+                background: linear-gradient(135deg, #f59e0b, #d97706) !important;
+                border: none !important;
+                padding: 6px 18px !important;
+                border-radius: 20px !important;
+                font-weight: 600 !important;
+                font-size: 0.7rem !important;
+                color: #0f172a !important;
+                cursor: pointer !important;
+                display: inline-flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 5px !important;
+                box-shadow: 0 2px 10px rgba(245,158,11,0.25) !important;
+                transition: all 0.3s ease !important;
+                font-family: 'Tajawal', sans-serif !important;
+                white-space: nowrap !important;
+                height: 32px !important;
+                min-width: 90px !important;
+            "
+            onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 18px rgba(245,158,11,0.4)'"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 10px rgba(245,158,11,0.25)'">
+        <i class="fa-solid fa-user-shield" style="font-size: 0.75rem;"></i> المشرفين
+    </button>
+
+</div>
             <!-- زر الدرجات -->
             <div id="lockGradesBtnWrapper" style="display: none;">
                 <button class="lock-btn lock-btn-grades" onclick="openGradesFromLock()">
@@ -16198,5 +16311,76 @@ if ('serviceWorker' in navigator) {
         .catch(err => console.log('❌ SW failed', err));
 }
 </script>
+<style>
+/* ===== رفع شاشة الدخول - 30px (أقل ارتفاعاً) ===== */
+.lock-card {
+    transform: translateX(50px) translateY(-30px) !important;
+}
+
+/* للجوال */
+@media (max-width: 480px) {
+    .lock-card {
+        transform: translateX(25px) translateY(-20px) !important;
+        padding: 25px 16px 20px;
+        border-radius: 20px;
+    }
+    .lock-screen-overlay {
+        padding: 5px !important;
+        align-items: flex-start !important;
+        padding-top: 15px !important;
+    }
+}
+
+/* للشاشات المتوسطة */
+@media (min-width: 481px) and (max-width: 768px) {
+    .lock-card {
+        transform: translateX(35px) translateY(-25px) !important;
+    }
+}
+
+</style>
+<style>
+/* ===== رفع شاشة الدخول مع إطار ذهبي ثابت ===== */
+.lock-card {
+    transform: translateX(50px) translateY(-30px) !important;
+    /* ✅ الإطار الذهبي الثابت - بكل الجوانب */
+    border: 3px solid #caa14a !important;
+    border-color: #caa14a !important;
+    border-style: solid !important;
+    border-width: 3px !important;
+    box-shadow: 0 0 20px rgba(202, 161, 74, 0.08), 0 0 40px rgba(202, 161, 74, 0.04) !important;
+    /* ✅ تأكد من ظهور الإطار */
+    outline: none !important;
+}
+
+/* للجوال */
+@media (max-width: 480px) {
+    .lock-card {
+        transform: translateX(25px) translateY(-20px) !important;
+        padding: 25px 16px 20px;
+        border-radius: 20px;
+        border: 2px solid #caa14a !important;
+        border-color: #caa14a !important;
+        border-style: solid !important;
+        border-width: 2px !important;
+        box-shadow: 0 0 15px rgba(202, 161, 74, 0.06) !important;
+    }
+    .lock-screen-overlay {
+        padding: 5px !important;
+        align-items: flex-start !important;
+        padding-top: 15px !important;
+    }
+}
+
+/* للشاشات المتوسطة */
+@media (min-width: 481px) and (max-width: 768px) {
+    .lock-card {
+        transform: translateX(35px) translateY(-25px) !important;
+        border: 2.5px solid #caa14a !important;
+        border-color: #caa14a !important;
+    }
+}
+
+</style>
 </body>
 </html>
