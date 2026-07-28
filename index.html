@@ -16312,15 +16312,15 @@ if ('serviceWorker' in navigator) {
 }
 </script>
 <style>
-/* ===== رفع شاشة الدخول - 30px (أقل ارتفاعاً) ===== */
+/* ===== رفع شاشة الدخول - 5px (نزول كبير) ===== */
 .lock-card {
-    transform: translateX(50px) translateY(-30px) !important;
+    transform: translateX(50px) translateY(-5px) !important;
 }
 
 /* للجوال */
 @media (max-width: 480px) {
     .lock-card {
-        transform: translateX(25px) translateY(-20px) !important;
+        transform: translateX(25px) translateY(0px) !important;
         padding: 25px 16px 20px;
         border-radius: 20px;
     }
@@ -16334,50 +16334,7 @@ if ('serviceWorker' in navigator) {
 /* للشاشات المتوسطة */
 @media (min-width: 481px) and (max-width: 768px) {
     .lock-card {
-        transform: translateX(35px) translateY(-25px) !important;
-    }
-}
-
-</style>
-<style>
-/* ===== رفع شاشة الدخول مع إطار ذهبي ثابت ===== */
-.lock-card {
-    transform: translateX(50px) translateY(-30px) !important;
-    /* ✅ الإطار الذهبي الثابت - بكل الجوانب */
-    border: 3px solid #caa14a !important;
-    border-color: #caa14a !important;
-    border-style: solid !important;
-    border-width: 3px !important;
-    box-shadow: 0 0 20px rgba(202, 161, 74, 0.08), 0 0 40px rgba(202, 161, 74, 0.04) !important;
-    /* ✅ تأكد من ظهور الإطار */
-    outline: none !important;
-}
-
-/* للجوال */
-@media (max-width: 480px) {
-    .lock-card {
-        transform: translateX(25px) translateY(-20px) !important;
-        padding: 25px 16px 20px;
-        border-radius: 20px;
-        border: 2px solid #caa14a !important;
-        border-color: #caa14a !important;
-        border-style: solid !important;
-        border-width: 2px !important;
-        box-shadow: 0 0 15px rgba(202, 161, 74, 0.06) !important;
-    }
-    .lock-screen-overlay {
-        padding: 5px !important;
-        align-items: flex-start !important;
-        padding-top: 15px !important;
-    }
-}
-
-/* للشاشات المتوسطة */
-@media (min-width: 481px) and (max-width: 768px) {
-    .lock-card {
-        transform: translateX(35px) translateY(-25px) !important;
-        border: 2.5px solid #caa14a !important;
-        border-color: #caa14a !important;
+        transform: translateX(35px) translateY(-3px) !important;
     }
 }
 
